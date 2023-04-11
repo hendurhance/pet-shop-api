@@ -20,11 +20,59 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
 
     /**
+     * The controller namespace for the api routes.
+     *
+     * When present, controller route declarations will automatically be prefixed with this namespace.
+     *
+     * @var string|null
+     */
+    protected $apiNamespace = 'App\Http\Controllers\API';
+
+    /**
+     * The version of the api.
+     * 
+     * @var string
+     */
+    protected $apiVersion = 'v1';
+
+    /**
+     * Admin Routes
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::group([
+            'middleware' => ['api'],
+            'namespace' => "{$this->apiNamespace}\\{$this->apiVersion}\\Admin",
+            'prefix'     => 'v1/admin',
+        ], function($router){
+            require base_path('/routes/v1/admin.php');
+        });
+    }
+
+    /**
+     * User Routes
+     */
+    protected function mapUserRoutes()
+    {
+        Route::group([
+            'middleware' => ['api'],
+            'namespace' => "{$this->apiNamespace}\\{$this->apiVersion}\\User",
+            'prefix'     => 'v1/user',
+        ], function($router){
+            require base_path('/routes/v1/user.php');
+        });
+    }
+
+    /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
     public function boot(): void
     {
         $this->configureRateLimiting();
+
+        $this->mapAdminRoutes();
+
+        $this->mapUserRoutes();
 
         $this->routes(function () {
             Route::middleware('api')
