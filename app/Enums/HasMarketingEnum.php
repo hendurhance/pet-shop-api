@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enum;
+namespace App\Enums;
 /**
  * Enum for Marketing
  * @return int<0=HAS_NO_MARKETING,1=HAS_MARKETING>
