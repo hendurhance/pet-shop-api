@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            // $table->string('avatar')->nullable();
-            // Avatar UUID of the image stored into the files table 
             $table->uuid('avatar')->nullable();
             $table->string('phone_number')->nullable();
             $table->boolean('is_marketing')->default(HasMarketingEnum::HAS_NO_MARKETING);

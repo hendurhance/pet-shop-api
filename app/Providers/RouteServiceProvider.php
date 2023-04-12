@@ -33,7 +33,7 @@ class RouteServiceProvider extends ServiceProvider
      * 
      * @var string
      */
-    protected $apiVersion = 'v1';
+    protected $apiVersion = 'V1';
 
     /**
      * Admin Routes
@@ -43,7 +43,8 @@ class RouteServiceProvider extends ServiceProvider
         Route::group([
             'middleware' => ['api'],
             'namespace' => "{$this->apiNamespace}\\{$this->apiVersion}\\Admin",
-            'prefix'     => 'v1/admin',
+            'prefix'     => 'api/v1/admin',
+            'as'         => 'api.v1.admin.',
         ], function($router){
             require base_path('/routes/v1/admin.php');
         });
@@ -57,7 +58,8 @@ class RouteServiceProvider extends ServiceProvider
         Route::group([
             'middleware' => ['api'],
             'namespace' => "{$this->apiNamespace}\\{$this->apiVersion}\\User",
-            'prefix'     => 'v1/user',
+            'prefix'     => 'api/v1/user',
+            'as'         => 'api.v1.user.',
         ], function($router){
             require base_path('/routes/v1/user.php');
         });
