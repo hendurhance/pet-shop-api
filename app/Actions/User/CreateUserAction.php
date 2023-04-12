@@ -6,7 +6,7 @@ use App\Enums\UserTypeEnum;
 use App\Models\User;
 use Carbon\Carbon;
 
-final class CreateUser
+final class CreateUserAction
 {
     /**
      * Create a new user.
@@ -22,10 +22,10 @@ final class CreateUser
         $user->is_admin = $type;
         $user->email = $data['email'];
         $user->email_verified_at = Carbon::now();
-        $user->password = $data['password'];
+        $user->password = bcrypt($data['password']);
         $user->avatar = $data['avatar'];
         $user->phone_number = $data['phone'];
-        $user->is_marketing = $data['marketing'];
+        $user->is_marketing = $data['marketing'] ?? false;
         $user->save();
 
         return $user;
