@@ -3,12 +3,15 @@
 namespace App\Repositories\User\Auth;
 
 use App\Actions\Auth\AuthAction;
+use App\Actions\Auth\CreateResetTokenAction;
 use App\Actions\User\CreateUserAction;
 use App\Contracts\Repositories\User\AuthenticateRepositoryInterface as AuthenticateUserRepositoryInterface;
 use App\Enums\UserTypeEnum;
+use App\Exceptions\User\UserNotFoundException;
 use App\Models\User;
 use App\Traits\HttpResponse;
 use Carbon\Carbon;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticateRepository implements AuthenticateUserRepositoryInterface
@@ -26,6 +29,11 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
     private $authAction;
 
     /**
+     * @var CreateResetTokenAction
+     */
+    private $createResetTokenAction;
+
+    /**
      * AuthenticateRepository constructor.
      * @param CreateUser $createUser
      */
@@ -33,6 +41,7 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
     {
         $this->createUserAction = $createUserAction;
         $this->authAction = new AuthAction();
+        $this->createResetTokenAction = new CreateResetTokenAction();
     }
 
     /**
@@ -68,7 +77,7 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
      */
     public function logout()
     {
-
+        Auth::logout();
     }
 
     /**
@@ -77,23 +86,33 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
      */
     public function forgotPassword(string $email)
     {
+        # We want to make sure that only users can reset their password
+        $user = User::query()->whereUserType(UserTypeEnum::IS_USER)->whereEmailExact($email)->firstOr(function () {
+            throw new UserNotFoundException();
+        });
 
+        return $this->createResetTokenAction->execute($user);
     }
 
     /**
      * Reset password token]
      * @param string $token
      */
-    public function resetPasswordToken(string $token)
+    public function resetPasswordToken(array $data)
     {
+        $user = $this->createResetTokenAction->findUserByToken($data['token'], $data['email']);
 
+        $user->update([
+            'password' => bcrypt($data['password'])
+        ]);
     }
 
     /**
      * Update last login at
      * @param User $user
      */
-    public function lastLoginAt(User $user){
+    public function lastLoginAt(User $user)
+    {
         $user->update(['last_login_at' => Carbon::now()]);
     }
 }

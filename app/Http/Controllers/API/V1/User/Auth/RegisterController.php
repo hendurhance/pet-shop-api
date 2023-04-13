@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API\V1\User\Auth;
 use App\Contracts\Repositories\User\AuthenticateRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Auth\CreateUserRequest;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegisterController extends Controller

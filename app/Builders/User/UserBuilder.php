@@ -2,6 +2,7 @@
 
 namespace App\Builders\User;
 
+use App\Enums\UserTypeEnum;
 use Illuminate\Database\Eloquent\Builder;
 
 class UserBuilder extends Builder
@@ -58,6 +59,16 @@ class UserBuilder extends Builder
     {
         return $this->where('email', 'LIKE', "%{$email}%");
     }
+    
+    /**
+     * Where email is exact.
+     * @param string $email
+     * @return self
+     */
+    public function whereEmailExact(string $email): self
+    {
+        return $this->where('email', $email);
+    }
 
     /**
      * Where phone number is.
@@ -107,5 +118,15 @@ class UserBuilder extends Builder
     public function wherePage(int $page): self
     {
         return $this->skip(($page - 1) * self::PER_PAGE);
+    }
+
+    /**
+     * Where user type is.
+     * @param UserTypeEnum $userType
+     * @return self
+     */
+    public function whereUserType(UserTypeEnum $userType): self
+    {
+        return $this->where('is_admin', $userType);
     }
 }

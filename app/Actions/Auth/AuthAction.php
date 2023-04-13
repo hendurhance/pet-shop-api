@@ -2,13 +2,10 @@
 
 namespace App\Actions\Auth;
 
-use App\Traits\HttpResponse;
+use App\Exceptions\Auth\UnauthorizedException;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 final class AuthAction {
-
-    use HttpResponse;
 
     /**
      * Authenticate a user/admin and return a token.
@@ -19,7 +16,7 @@ final class AuthAction {
     public function authenticate(array $data): string
     {
         $token = Auth::attempt($data);
-        if(!$token) $this->error('Invalid credentials', Response::HTTP_UNAUTHORIZED);
+        if(!$token) throw new UnauthorizedException();
         return $token;
     }
 

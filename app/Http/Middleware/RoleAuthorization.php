@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Exceptions\Auth\UnauthorizedException;
 use App\Traits\HttpResponse;
 use Closure;
 use Illuminate\Http\Request;
@@ -10,8 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleAuthorization
 {
-    use HttpResponse;
-
     /**
      * Handle an incoming request.
      *
@@ -24,7 +23,7 @@ class RoleAuthorization
     {
         $user = Auth::user();
 
-        if (!$user) return $this->error('Unauthorized', Response::HTTP_UNAUTHORIZED);
+        if (!$user) throw new UnauthorizedException();
 
         foreach ($roles as $role) {
             if ($role === 'admin' && $user->is_admin) {
@@ -34,6 +33,6 @@ class RoleAuthorization
             }
         }
 
-        return $this->error('Unauthorized', Response::HTTP_UNAUTHORIZED);
+        throw new UnauthorizedException();
     }
 }
