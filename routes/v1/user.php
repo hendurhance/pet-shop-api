@@ -150,17 +150,17 @@ Route::group([
 //     Route::get('/products', 'ProductController@index')->name('product.index');
 // });
 
-// /*
-// | -------------------------------------------------------------------
-// |  File API Routes
-// | -------------------------------------------------------------------
-// */
+/*
+| -------------------------------------------------------------------
+|  File API Routes
+| -------------------------------------------------------------------
+*/
 
-// Route::group([
-//     'namespace' => 'File',
-//     'as' => 'file.',
-//     'prefix' => 'file',
-// ], function () {
-//     Route::post('/upload', 'FileController@upload')->name('upload');
-//     Route::get('{uuid}', 'FileController@show')->name('show');
-// });
+Route::group([
+    'namespace' => 'File',
+    'as' => 'file.',
+    'prefix' => 'file',
+], function () {
+    Route::post('/upload', 'FileController@upload')->name('upload');
+    Route::get('{uuid}', 'FileController@show')->name('show');
+});

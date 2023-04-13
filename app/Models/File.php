@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\User\FileBuilder;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,4 +23,12 @@ class File extends Model
         'size',
         'type',
     ];
+
+    /**
+     * Instantiate a new QueryBuilder instance.
+     */
+    public function newEloquentBuilder($query): FileBuilder
+    {
+        return new FileBuilder($query);
+    }
 }

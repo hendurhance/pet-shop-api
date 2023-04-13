@@ -11,7 +11,7 @@ class UserBuilder extends Builder
     
     /**
      * WHere UUID is.
-     * @param Uuid $uuid
+     * @param string $uuid
      * @return self
      */
     public function whereUuid(string $uuid): self
