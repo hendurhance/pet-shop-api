@@ -7,12 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 final class AuthAction {
-    use HttpResponse;
 
-    /**
-     * Constructor
-     */
-    public function __construct(protected string $guard) {}
+    use HttpResponse;
 
     /**
      * Authenticate a user/admin and return a token.
@@ -22,7 +18,7 @@ final class AuthAction {
      */
     public function authenticate(array $data): string
     {
-        $token = Auth::guard($this->guard)->attempt($data);
+        $token = Auth::attempt($data);
         if(!$token) $this->error('Invalid credentials', Response::HTTP_UNAUTHORIZED);
         return $token;
     }
@@ -33,6 +29,6 @@ final class AuthAction {
      */
     public function user(): \Illuminate\Contracts\Auth\Authenticatable|null
     {
-        return Auth::guard($this->guard)->user();
+        return Auth::guard()->user();
     }
 }

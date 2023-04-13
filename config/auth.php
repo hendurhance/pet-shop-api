@@ -45,12 +45,6 @@ return [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
-
-        'admin' => [
-            'driver' => 'jwt',
-            'provider' => 'admins',
-        ]
-        
     ],
 
     /*
@@ -73,20 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-            'table' => 'users',
-            'where' => [
-                'is_admin' => false
-            ]
-        ],
-
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-            'table' => 'users',
-            'where' => [
-                'is_admin' => true
-            ]
+            'model' => App\Models\User::class
         ],
 
         // 'users' => [

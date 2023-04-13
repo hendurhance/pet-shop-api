@@ -6,7 +6,10 @@ use App\Actions\Auth\AuthAction;
 use App\Actions\User\CreateUserAction;
 use App\Contracts\Repositories\User\AuthenticateRepositoryInterface as AuthenticateUserRepositoryInterface;
 use App\Enums\UserTypeEnum;
+use App\Models\User;
 use App\Traits\HttpResponse;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticateRepository implements AuthenticateUserRepositoryInterface
 {
@@ -29,7 +32,7 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
     public function __construct(CreateUserAction $createUserAction)
     {
         $this->createUserAction = $createUserAction;
-        $this->authAction = new AuthAction('api');
+        $this->authAction = new AuthAction();
     }
 
     /**
@@ -48,7 +51,15 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
      */
     public function login(array $data)
     {
+        $token = $this->authAction->authenticate($data);
+        $this->lastLoginAt($this->authAction->user());
 
+        return [
+            'token' => $token,
+            'user' => $this->authAction->user(),
+            'token_type' => 'jwt',
+            'expires_in' => config('jwt.ttl') * 60
+        ];
     }
 
     /**
@@ -76,5 +87,13 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
     public function resetPasswordToken(string $token)
     {
 
+    }
+
+    /**
+     * Update last login at
+     * @param User $user
+     */
+    public function lastLoginAt(User $user){
+        $user->update(['last_login_at' => Carbon::now()]);
     }
 }

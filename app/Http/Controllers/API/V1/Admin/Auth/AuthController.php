@@ -17,7 +17,8 @@ class AuthController extends Controller
      */
     public function __construct(private AuthenticateRepositoryInterface $authenticateRepository)
     {
-        $this->middleware('auth:admin', ['except' => ['create', 'login']]);
+        $this->middleware('auth:api', ['except' => ['create', 'login']]);
+        $this->middleware('role:admin', ['except' => ['create', 'login']]);
         $this->authenticateRepository = $authenticateRepository;
     }
 

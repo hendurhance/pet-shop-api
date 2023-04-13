@@ -33,7 +33,7 @@ class AuthenticateRepository implements AdminAuthenticateRepositoryInterface
     public function __construct(CreateUserAction $createUserAction)
     {
         $this->createUserAction = $createUserAction;
-        $this->authAction = new AuthAction('admin');
+        $this->authAction = new AuthAction();
     }
 
     /**
@@ -48,7 +48,7 @@ class AuthenticateRepository implements AdminAuthenticateRepositoryInterface
 
         return [
             'token' => $token,
-            'user' => Auth::guard('admin')->user(),
+            'user' => $this->authAction->user(),
             'token_type' => 'jwt',
             'expires_in' => config('jwt.ttl') * 60
         ];
@@ -60,7 +60,7 @@ class AuthenticateRepository implements AdminAuthenticateRepositoryInterface
      */
     public function logout()
     {
-        Auth::guard('admin')->logout();
+        Auth::logout();
     }
 
     /**

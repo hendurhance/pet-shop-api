@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1\User\Auth;
 use App\Contracts\Repositories\User\AuthenticateRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Auth\LoginUserRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
 {
@@ -19,6 +20,7 @@ class LoginController extends Controller
 
     public function login(LoginUserRequest $request)
     {
-
+        $data = $this->authenticateRepository->login($request->validated());
+        return $this->success($data, 'User logged in successfully', Response::HTTP_OK);
     }
 }
