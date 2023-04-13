@@ -18,6 +18,11 @@ class RegisterController extends Controller
         $this->authenticateRepository = $authenticateRepository;
     }
 
+    /**
+     * Register a user
+     * @param CreateUserRequest $request
+     * @return \App\Traits\HttpResponse
+     */
     public function create(CreateUserRequest $request)
     {
         $data = $this->authenticateRepository->create($request->validated());

@@ -20,6 +20,11 @@ class LogoutController extends Controller
         $this->authenticateRepository = $authenticateRepository;
     }
 
+    /**
+     * Logout a user
+     * @param Request $request
+     * @return \App\Traits\HttpResponse
+     */
     public function logout()
     {
         $this->authenticateRepository->logout();

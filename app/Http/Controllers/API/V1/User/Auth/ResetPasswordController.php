@@ -18,6 +18,11 @@ class ResetPasswordController extends Controller
         $this->authenticateRepository = $authenticateRepository;
     }
 
+    /**
+     * Reset password
+     * @param ResetUserPasswordRequest $request
+     * @return \App\Traits\HttpResponse
+     */
     public function resetPasswordToken(ResetUserPasswordRequest $request)
     {
         $data = $this->authenticateRepository->resetPasswordToken($request->validated());

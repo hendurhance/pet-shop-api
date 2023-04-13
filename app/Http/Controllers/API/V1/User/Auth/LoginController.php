@@ -18,6 +18,11 @@ class LoginController extends Controller
         $this->authenticateRepository = $authenticateRepository;
     }
 
+    /**
+     * Login a user
+     * @param LoginUserRequest $request
+     * @return \App\Traits\HttpResponse
+     */
     public function login(LoginUserRequest $request)
     {
         $data = $this->authenticateRepository->login($request->validated());

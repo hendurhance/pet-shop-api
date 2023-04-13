@@ -18,6 +18,12 @@ class ForgotPasswordController extends Controller
         $this->authenticateRepository = $authenticateRepository;
     }
 
+
+    /**
+     * Forgot password
+     * @param ForgotUserPasswordRequest $request
+     * @return \App\Traits\HttpResponse
+     */
     public function forgotPassword(ForgotUserPasswordRequest $request)
     {
         $data = $this->authenticateRepository->forgotPassword($request->email);
