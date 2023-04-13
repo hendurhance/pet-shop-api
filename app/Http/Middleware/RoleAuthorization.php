@@ -23,7 +23,7 @@ class RoleAuthorization
     {
         $user = Auth::user();
 
-        if (!$user) throw new UnauthorizedException();
+        if (!$user) throw new UnauthorizedException('Unauthorized');
 
         foreach ($roles as $role) {
             if ($role === 'admin' && $user->is_admin) {
@@ -33,6 +33,6 @@ class RoleAuthorization
             }
         }
 
-        throw new UnauthorizedException();
+        throw new UnauthorizedException('You are not authorized to access this resource');
     }
 }
