@@ -9,6 +9,16 @@ class UserBuilder extends Builder
     private const PER_PAGE = 10;
     
     /**
+     * WHere UUID is.
+     * @param Uuid $uuid
+     * @return self
+     */
+    public function whereUuid(string $uuid): self
+    {
+        return $this->where('uuid', $uuid);
+    }
+
+    /**
      * Where first name is.
      * @param string $firstName
      * @return self

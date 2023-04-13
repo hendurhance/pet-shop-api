@@ -3,11 +3,15 @@
 namespace App\Repositories\Admin\User;
 
 use App\Contracts\Repositories\Admin\UserRepositoryInterface as AdminUserRepositoryInterface;
+use App\Exceptions\User\UserNotFoundException;
 use App\Models\User;
+use App\Traits\HttpResponse;
 use App\Types\Uuid;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserRepository implements AdminUserRepositoryInterface
 {
+    use HttpResponse;
 
     /**
      * Get a listing of users based on given filters
@@ -41,13 +45,41 @@ class UserRepository implements AdminUserRepositoryInterface
         return $query->paginate($paginate);
     }
 
-    public function editUser(Uuid $uuid)
+    /**
+     * Get a user record by uuid
+     * @param string $uuid
+     * @return \App\Models\User
+     */
+    public function editUser(string $uuid, array $data)
     {
+        $user = $this->findUser($uuid);
 
+        $user->update($data);
+
+        return $user;
     }
 
-    public function deleteUser(Uuid $uuid)
+    /**
+     * Delete a user record by uuid
+     * @param string $uuid
+     * @return void
+     */
+    public function deleteUser(string $uuid)
     {
+        $user = $this->findUser($uuid);
 
+        $user->delete();
+    }
+
+    /**
+     * Find a user by uuid
+     * @param string $uuid
+     * @return \App\Models\User
+     */
+    protected function findUser(string $uuid)
+    {
+        return User::whereUuid($uuid)->firstOr(function () {
+            throw new UserNotFoundException();
+        });
     }
 }

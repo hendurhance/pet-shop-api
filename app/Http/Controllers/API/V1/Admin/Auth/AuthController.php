@@ -24,7 +24,7 @@ class AuthController extends Controller
     /**
      * Create an Admin User
      * @param CreateAdminRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \App\Traits\HttpResponse
      */
     public function create(CreateAdminRequest $request)
     {
@@ -35,7 +35,7 @@ class AuthController extends Controller
     /**
      * Login Admin User
      * @param LoginAdminRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \App\Traits\HttpResponse
      */
     public function login(LoginAdminRequest $request)
     {
@@ -45,7 +45,7 @@ class AuthController extends Controller
 
     /**
      * Logout Admin User
-     * @return \Illuminate\Http\JsonResponse
+     * @return \App\Traits\HttpResponse
      */
     public function logout()
     {

@@ -36,6 +36,11 @@ class AuthenticateRepository implements AdminAuthenticateRepositoryInterface
         $this->authAction = new AuthAction('admin');
     }
 
+    /**
+     * Login admin
+     * @param array $data
+     * @return array
+     */
     public function login(array $data)
     {
         $token = $this->authAction->authenticate($data);
@@ -49,16 +54,29 @@ class AuthenticateRepository implements AdminAuthenticateRepositoryInterface
         ];
     }
 
+    /**
+     * Logout admin
+     * @return void
+     */
     public function logout()
     {
         Auth::guard('admin')->logout();
     }
 
+    /**
+     * Create admin
+     * @param array $data
+     * @return \App\Models\User
+     */
     public function create(array $data)
     {
         return $this->createUserAction->execute($data, UserTypeEnum::IS_ADMIN);
     }
     
+    /**
+     * Update last login at
+     * @param User $user
+     */
     public function lastLoginAt(User $user){
         $user->update(['last_login_at' => Carbon::now()]);
     }
