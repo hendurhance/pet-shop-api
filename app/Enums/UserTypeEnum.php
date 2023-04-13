@@ -7,7 +7,6 @@ namespace App\Enums;
  * @return int<0=USER,1=ADMIN>
  */
 
-
 enum UserTypeEnum: int
 {
     case IS_ADMIN = 1;

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Builders\User\UserBuilder;
 use App\Enums\HasMarketingEnum;
 use App\Enums\UserTypeEnum;
 use App\Traits\UuidTrait;
@@ -30,6 +31,7 @@ class User extends Authenticatable implements JWTSubject
         'avatar',
         'password',
         'is_admin',
+        'address',
         'phone_number',
         'is_marketing',
         'last_login_at',
@@ -52,7 +54,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'is_admin' => UserTypeEnum::class,
+        'is_admin' => 'boolean',
         'has_marketing' => HasMarketingEnum::class,
         'last_login_at' => 'datetime',
     ];
@@ -74,5 +76,13 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    
+    /**
+     * Instantiate a new QueryBuilder instance.
+     */
+    public function newEloquentBuilder($query): UserBuilder
+    {
+        return new UserBuilder($query);
     }
 }

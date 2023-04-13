@@ -18,13 +18,14 @@ return new class extends Migration
             $table->uuid('uuid')->unique()->index();
             $table->string('first_name');
             $table->string('last_name');
-            $table->boolean('is_admin')->default(UserTypeEnum::IS_USER);
+            $table->boolean('is_admin')->default(UserTypeEnum::IS_USER->value);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->uuid('avatar')->nullable();
+            $table->mediumText('address')->nullable();
             $table->string('phone_number')->nullable();
-            $table->boolean('is_marketing')->default(HasMarketingEnum::HAS_NO_MARKETING);
+            $table->boolean('is_marketing')->default(HasMarketingEnum::HAS_NO_MARKETING->value);
             $table->dateTime('last_login_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
