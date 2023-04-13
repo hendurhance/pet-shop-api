@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\HasMarketingEnum;
+use App\Enums\MarketingPreferenceEnum;
 use App\Enums\UserTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -68,7 +68,7 @@ class UserFactory extends Factory
     public function marketing(): static
     {
         return $this->state(fn (array $attributes) => [
-            'is_marketing' => HasMarketingEnum::HAS_MARKETING,
+            'is_marketing' => MarketingPreferenceEnum::HAS_MARKETING,
         ]);
     }
 }

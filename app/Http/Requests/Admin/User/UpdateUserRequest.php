@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin\User;
 
-use App\Enums\HasMarketingEnum;
+use App\Enums\MarketingPreferenceEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
@@ -39,7 +39,7 @@ class UpdateUserRequest extends FormRequest
             'avatar' => 'nullable|uuid|exists:files,uuid',
             'address' => 'required|string|max:255',
             'phone_number' => 'required|string|max:255',
-            'is_marketing' => ['nullable', 'in:'.HasMarketingEnum::values()],
+            'is_marketing' => ['nullable', 'in:'.MarketingPreferenceEnum::values()],
         ];
     }
 }

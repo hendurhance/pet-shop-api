@@ -6,7 +6,7 @@ namespace App\Enums;
  * @return int<0=HAS_NO_MARKETING,1=HAS_MARKETING>
  */
 
-enum HasMarketingEnum: int
+enum MarketingPreferenceEnum: int
 {
     case HAS_MARKETING = 1;
     case HAS_NO_MARKETING = 0;

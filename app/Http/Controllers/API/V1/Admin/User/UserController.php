@@ -14,8 +14,8 @@ class UserController extends Controller
     
 
     /**
-     * AuthController constructor.
-     * @param UserRepository $authenticateRepository
+     * UserController constructor.
+     * @param UserRepositoryInterface $authenticateRepository
      */
     public function __construct(private UserRepositoryInterface $userRepository)
     {

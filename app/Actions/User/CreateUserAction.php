@@ -24,8 +24,8 @@ final class CreateUserAction
         $user->email_verified_at = Carbon::now();
         $user->password = bcrypt($data['password']);
         $user->avatar = $data['avatar'];
-        $user->phone_number = $data['phone'];
-        $user->is_marketing = $data['marketing'] ?? false;
+        $user->phone_number = $data['phone'] ?? $data['phone_number'];
+        $user->is_marketing = $data['marketing'] ?? $data['is_marketing'] ?? false;
         $user->save();
 
         return $user;

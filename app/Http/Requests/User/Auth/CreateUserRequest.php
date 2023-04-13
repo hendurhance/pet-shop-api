@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Admin\Auth;
+namespace App\Http\Requests\User\Auth;
 
 use App\Enums\MarketingPreferenceEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
-class CreateAdminRequest extends FormRequest
+class CreateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,8 +38,8 @@ class CreateAdminRequest extends FormRequest
             'password_confirmation' => 'required|same:password',
             'avatar' => 'required|uuid|exists:files,uuid',
             'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'marketing' => ['nullable', 'in:'.MarketingPreferenceEnum::values()],
+            'phone_number' => 'required|string|max:255',
+            'is_marketing' => ['nullable', 'in:'.MarketingPreferenceEnum::values()],
         ];
     }
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Builders\User\UserBuilder;
-use App\Enums\HasMarketingEnum;
+use App\Enums\MarketingPreferenceEnum;
 use App\Enums\UserTypeEnum;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -55,7 +55,7 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
-        'has_marketing' => HasMarketingEnum::class,
+        'has_marketing' => MarketingPreferenceEnum::class,
         'last_login_at' => 'datetime',
     ];
 

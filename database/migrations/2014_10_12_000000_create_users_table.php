@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\HasMarketingEnum;
+use App\Enums\MarketingPreferenceEnum;
 use App\Enums\UserTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->uuid('avatar')->nullable();
             $table->mediumText('address')->nullable();
             $table->string('phone_number')->nullable();
-            $table->boolean('is_marketing')->default(HasMarketingEnum::HAS_NO_MARKETING->value);
+            $table->boolean('is_marketing')->default(MarketingPreferenceEnum::HAS_NO_MARKETING->value);
             $table->dateTime('last_login_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
