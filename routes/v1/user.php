@@ -28,7 +28,8 @@ Route::group([
     Route::group([
         'namespace' => 'User'
     ], function () {
-        Route::resource('/', 'UserController')->only(['index', 'destroy']);
+        Route::get('/', 'UserController@show')->name('user.show');
+        Route::delete('/', 'UserController@destroy')->name('user.destroy');
 
         Route::get('/orders', 'OrderController@index')->name('order.index');
         Route::put('/edit', 'UserController@edit')->name('edit');
