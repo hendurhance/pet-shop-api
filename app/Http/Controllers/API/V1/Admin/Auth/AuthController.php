@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\V1\Admin\Auth;
 
+use App\Contracts\Repositories\Admin\AuthenticateRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\CreateAdminRequest;
 use App\Http\Requests\Admin\Auth\LoginAdminRequest;
-use App\Repositories\Admin\Auth\AuthenticateRepository;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
@@ -15,7 +15,7 @@ class AuthController extends Controller
      * AuthController constructor.
      * @param AuthenticateRepository $authenticateRepository
      */
-    public function __construct(private AuthenticateRepository $authenticateRepository)
+    public function __construct(private AuthenticateRepositoryInterface $authenticateRepository)
     {
         $this->middleware('auth:admin', ['except' => ['create', 'login']]);
         $this->authenticateRepository = $authenticateRepository;
