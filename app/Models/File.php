@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Builders\User\FileBuilder;
+use App\Builders\File\FileBuilder;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
