@@ -39,10 +39,7 @@ class UserRepository implements AdminUserRepositoryInterface
 
         if(isset($filters['page'])) $query->wherePage($filters['page']);
 
-        if (isset($filters['limit'])) $query->limit($filters['limit']);
-        
-
-        return $query->paginate($paginate);
+        return $query->paginate($filters['limit'] ?? $paginate);
     }
 
     /**

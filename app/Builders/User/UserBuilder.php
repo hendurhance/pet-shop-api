@@ -41,16 +41,6 @@ class UserBuilder extends Builder
     }
 
     /**
-     * Limit
-     * @param int $limit
-     * @return self
-     */
-    public function limit(int $limit): self
-    {
-        return $this->take($limit);
-    }
-
-    /**
      * Where email is.
      * @param string $email
      * @return self
