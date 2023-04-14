@@ -7,6 +7,7 @@ use App\Contracts\Repositories\Admin\UserRepositoryInterface;
 use App\Contracts\Repositories\User\AuthenticateRepositoryInterface as AuthenticateUserRepositoryInterface;
 use App\Contracts\Repositories\User\BlogRepositoryInterface;
 use App\Contracts\Repositories\User\BrandRepositoryInterface;
+use App\Contracts\Repositories\User\CategoryRepositoryInterface;
 use App\Contracts\Repositories\User\FileRepositoryInterface;
 use App\Contracts\Repositories\User\PromotionRepositoryInterface;
 use App\Contracts\Repositories\User\UserRepositoryInterface as MainUserRepositoryInterface;
@@ -15,6 +16,7 @@ use App\Repositories\Admin\User\UserRepository;
 use App\Repositories\User\Auth\AuthenticateRepository as AuthenticateUserRepository;
 use App\Repositories\User\Blog\BlogRepository;
 use App\Repositories\User\Brand\BrandRepository;
+use App\Repositories\User\Category\CategoryRepository;
 use App\Repositories\User\File\FileRepository;
 use App\Repositories\User\Promotion\PromotionRepository;
 use App\Repositories\User\User\UserRepository as MainUserRepository;
@@ -67,6 +69,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             BlogRepositoryInterface::class,
             BlogRepository::class
+        );
+
+        $this->app->bind(
+            CategoryRepositoryInterface::class,
+            CategoryRepository::class
         );
     }
 }
