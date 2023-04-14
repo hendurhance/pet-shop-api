@@ -12,6 +12,11 @@ class Brand extends Model
 {
     use HasFactory, UuidTrait, Sluggable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'uuid',
         'title',

@@ -24,6 +24,15 @@ class Category extends Model
     ];
 
     /**
+     * Get the products for the category.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_uuid', 'uuid');
+    }
+    
+    /**
      * Instantiate a new QueryBuilder instance.
      */
     public function newEloquentBuilder($query): CategoryBuilder

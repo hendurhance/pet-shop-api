@@ -136,19 +136,19 @@ Route::group([
 //     Route::get('/payments', 'PaymentController@index')->name('payment.index');
 // });
 
-// /*
-// | -------------------------------------------------------------------
-// |  Product API Routes
-// | -------------------------------------------------------------------
-// */
+/*
+| -------------------------------------------------------------------
+|  Product API Routes
+| -------------------------------------------------------------------
+*/
 
-// Route::group([
-//     'namespace' => 'Product',
-// ], function () {
-//     Route::post('/product', 'ProductController@create')->name('product.create');
-//     Route::resource('/product', 'ProductController')->except(['create', 'index']);
-//     Route::get('/products', 'ProductController@index')->name('product.index');
-// });
+Route::group([
+    'namespace' => 'Product',
+], function () {
+    Route::post('/product', 'ProductController@create')->name('product.create');
+    Route::resource('/product', 'ProductController')->except(['create', 'index']);
+    Route::get('/products', 'ProductController@index')->name('product.index');
+});
 
 /*
 | -------------------------------------------------------------------
