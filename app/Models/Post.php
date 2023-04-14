@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\Post\PostBuilder;
 use App\Traits\Sluggable;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,4 +33,12 @@ class Post extends Model
     protected $casts = [
         'metadata' => 'array',
     ];
+
+    /**
+     * Instantiate a new QueryBuilder instance.
+     */
+    public function newEloquentBuilder($query): PostBuilder
+    {
+        return new PostBuilder($query);
+    }
 }

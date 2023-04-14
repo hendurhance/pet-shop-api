@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\Promotion\PromotionBuilder;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,4 +31,12 @@ class Promotion extends Model
     protected $casts = [
         'metadata' => 'array',
     ];
+
+    /**
+     * Instantiate a new QueryBuilder instance.
+     */
+    public function newEloquentBuilder($query): PromotionBuilder
+    {
+        return new PromotionBuilder($query);
+    }
 }

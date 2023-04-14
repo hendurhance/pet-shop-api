@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Builders\Brand;
+namespace App\Builders\Post;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class BrandBuilder extends Builder
+class PostBuilder extends Builder
 {
     private const PER_PAGE = 10;
     
