@@ -47,19 +47,19 @@ Route::group([
 });
 
 
-// /*
-// | -------------------------------------------------------------------
-// |  MainPage API Routes
-// | -------------------------------------------------------------------
-// */
-// Route::group([
-//     'namespace' => 'Main',
-//     'as' => 'main.',
-//     'prefix' => 'main',
-// ], function () {
-//     Route::get('/promotions', 'PromotionController@index')->name('promotion.index');
-//     Route::resource('/blog', 'BlogController')->only(['index', 'show']);
-// });
+/*
+| -------------------------------------------------------------------
+|  MainPage API Routes
+| -------------------------------------------------------------------
+*/
+Route::group([
+    'namespace' => 'Main',
+    'as' => 'main.',
+    'prefix' => 'main',
+], function () {
+    Route::get('/promotions', 'PromotionController@index')->name('promotion.index');
+    Route::resource('/blog', 'BlogController')->only(['index', 'show']);
+});
 
 // /*
 // | -------------------------------------------------------------------
