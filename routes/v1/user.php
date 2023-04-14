@@ -61,19 +61,19 @@ Route::group([
     Route::resource('/blog', 'BlogController')->only(['index', 'show']);
 });
 
-// /*
-// | -------------------------------------------------------------------
-// |  Categories API Routes
-// | -------------------------------------------------------------------
-// */
+/*
+| -------------------------------------------------------------------
+|  Categories API Routes
+| -------------------------------------------------------------------
+*/
 
-// Route::group([
-//     'namespace' => 'Category',
-// ], function () {
-//     Route::post('/category', 'CategoryController@create')->name('category.create');
-//     Route::resource('/category', 'CategoryController')->except(['create', 'index']);
-//     Route::get('/categories', 'CategoryController@index')->name('category.index');
-// });
+Route::group([
+    'namespace' => 'Category',
+], function () {
+    Route::post('/category', 'CategoryController@create')->name('category.create');
+    Route::resource('/category', 'CategoryController')->except(['create', 'index']);
+    Route::get('/categories', 'CategoryController@index')->name('category.index');
+});
 
 // /*
 // | -------------------------------------------------------------------

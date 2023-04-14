@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique()->index()->comment();
+            $table->uuid('uuid')->unique()->index()->comment('UUID to allow easy migration between envs without breaking FK in the logic');
             $table->string('title');
             $table->text('content');
             $table->json('metadata');
