@@ -81,13 +81,13 @@ Route::group([
 // | -------------------------------------------------------------------
 // */
 
-// Route::group([
-//     'namespace' => 'Brand',
-// ], function () {
-//     Route::post('/brand', 'BrandController@create')->name('brand.create');
-//     Route::resource('/brand', 'BrandController')->except(['create', 'index']);
-//     Route::get('/brands', 'BrandController@index')->name('brand.index');
-// });
+Route::group([
+    'namespace' => 'Brand',
+], function () {
+    Route::post('/brand', 'BrandController@create')->name('brand.create');
+    Route::resource('/brand', 'BrandController')->except(['create', 'index']);
+    Route::get('/brands', 'BrandController@index')->name('brand.index');
+});
 
 // /*
 // | -------------------------------------------------------------------
