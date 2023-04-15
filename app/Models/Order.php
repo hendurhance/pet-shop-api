@@ -73,7 +73,7 @@ class Order extends Model
     /**
      * Get total amount of the order
      *
-     * @return \Illuminate\Suppo
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function total(): Attribute
     {

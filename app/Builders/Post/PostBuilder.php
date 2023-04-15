@@ -2,9 +2,9 @@
 
 namespace App\Builders\Post;
 
-use Illuminate\Database\Eloquent\Builder;
+use App\Builders\BaseBuilder;
 
-class PostBuilder extends PostBuilder
+class PostBuilder extends BaseBuilder
 {
     //
 }
