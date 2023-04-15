@@ -115,9 +115,9 @@ Route::group([
 */
 
 Route::group([
-    'namespace' => 'Order/Status',
+    'namespace' => 'Order',
 ], function () {
-    Route::post('/order-status/create', 'OrderStatusController@create')->name('order.status.create');
+    Route::post('/order-status/create', 'OrderStatusController@store')->name('order.status.store');
     Route::resource('/order-status', 'OrderStatusController')->except(['create', 'index']);
     Route::get('/order-statuses', 'OrderStatusController@index')->name('order.status.index');
 });

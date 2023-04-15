@@ -13,11 +13,17 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
      * 
      * @param array $filters
      * @param int $paginate
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function listAll(array $filters, int $paginate = 10)
     {
-       //
+        $query = OrderStatus::query();
+
+        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+
+        if(isset($filters['page'])) $query->wherePage($filters['page']);
+
+        return $query->paginate($filters['limit'] ?? $paginate);
     }
 
     /**
@@ -28,7 +34,11 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
      */
     public function find(string $uuid)
     {
-        //
+        $orderStatus = OrderStatus::whereUuid($uuid)->firstOr(function () {
+            throw new OrderStatusNotFoundException();
+        });
+
+        return $orderStatus;
     }
 
     /**
@@ -39,7 +49,9 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
      */
     public function create(string $title)
     {
-        //
+        return OrderStatus::create([
+            'title' => $title
+        ]);
     }
 
     /**
@@ -51,7 +63,12 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
      */
     public function update(string $uuid, string $title)
     {
-        //
+        $orderStatus = $this->find($uuid);
+        $orderStatus->update([
+            'title' => $title
+        ]);
+
+        return $orderStatus;
     }
 
     /**
@@ -62,6 +79,7 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
      */
     public function delete(string $uuid)
     {
-        //
+        $orderStatus = $this->find($uuid);
+        $orderStatus->delete();
     }
 }
