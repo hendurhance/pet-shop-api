@@ -105,6 +105,8 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
         $user->update([
             'password' => bcrypt($data['password'])
         ]);
+
+        $this->createResetTokenAction->deleteResetToken($data['email']);
     }
 
     /**

@@ -10,7 +10,7 @@ class BlogRepository implements BlogRepositoryInterface
 {
     /**
      * List all blogs
-     * 
+     *
      * @param array $filters
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
@@ -18,7 +18,9 @@ class BlogRepository implements BlogRepositoryInterface
     {
         $query = Post::query();
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
         if(isset($filters['page'])) $query->wherePage($filters['page']);
 
@@ -27,13 +29,13 @@ class BlogRepository implements BlogRepositoryInterface
 
     /**
      * Find a blog by uuid
-     * 
+     *
      * @param string $uuid
      * @return \App\Models\Blog
      */
     public function find(string $uuid)
     {
-        return Post::whereUuid($uuid)->firstOr(function() {
+        return Post::whereUuid($uuid)->firstOr( function() {
             throw new BlogNotFoundException();
         });
     }

@@ -27,7 +27,6 @@ class UserController extends Controller
     public function show()
     {
         $data = $this->userRepository->find();
-        
         return $this->success($data, 'User fetched successfully');
     }
 
@@ -42,7 +41,6 @@ class UserController extends Controller
 
         return $this->success($data, 'User updated successfully');
     }
-
 
     /**
      * Delete authenticated user

@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class OrderStatusController extends Controller
 {
-
     /**
      * OrderStatusController constructor.
      * @param OrderStatusRepositoryInterface $orderStatusRepository
@@ -25,7 +24,7 @@ class OrderStatusController extends Controller
 
     /**
      * List all order statuses
-     * 
+     *
      * @param OrderStatusListingRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -37,7 +36,7 @@ class OrderStatusController extends Controller
 
     /**
      * Create a new order status
-     * 
+     *
      * @param CreateOrderStatusRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -48,7 +47,10 @@ class OrderStatusController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show an order status
+     *
+     * @param string $uuid
+     * @return \App\Traits\HttpResponse
      */
     public function show(string $uuid)
     {
@@ -57,7 +59,11 @@ class OrderStatusController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update order status
+     *
+     * @param UpdateOrderStatusRequest $request
+     * @param string $uuid
+     * @return \App\Traits\HttpResponse
      */
     public function update(UpdateOrderStatusRequest $request, string $uuid)
     {
@@ -66,7 +72,10 @@ class OrderStatusController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Destroy order status
+     *
+     * @param string $uuid
+     * @return \App\Traits\HttpResponse
      */
     public function destroy(string $uuid)
     {

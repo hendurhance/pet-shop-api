@@ -8,7 +8,6 @@ use App\Contracts\Repositories\User\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
-
     /**
      * Instantiate auth repository instance
      * @param AuthAction $authAction

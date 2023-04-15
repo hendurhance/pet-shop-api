@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-
     /**
      * PaymentController constructor.
      */
@@ -24,7 +23,7 @@ class PaymentController extends Controller
 
     /**
      * List all payments
-     * 
+     *
      * @param PaymentListingRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -36,7 +35,7 @@ class PaymentController extends Controller
 
     /**
      * Create a new payment
-     * 
+     *
      * @param CreatePaymentRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -48,7 +47,7 @@ class PaymentController extends Controller
 
     /**
      * Show a payment
-     * 
+     *
      * @param string $uuid
      * @return \App\Traits\HttpResponse
      */
@@ -60,7 +59,7 @@ class PaymentController extends Controller
 
     /**
      * Update a payment
-     * 
+     *
      * @param UpdatePaymentRequest $request
      * @param string $uuid
      */
@@ -72,7 +71,7 @@ class PaymentController extends Controller
 
     /**
      * Delete a payment
-     * 
+     *
      * @param string $uuid
      * @return \App\Traits\HttpResponse
      */

@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Builders\Promotion\PromotionBuilder;
-use App\Traits\UuidTrait;
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Promotion extends Model
 {
-    use HasFactory, UuidTrait;
+    use HasFactory, Uuids;
 
     /**
      * The attributes that are mass assignable.

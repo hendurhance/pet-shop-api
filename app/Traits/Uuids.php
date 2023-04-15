@@ -4,12 +4,12 @@ namespace App\Traits;
 
 use Illuminate\Support\Str;
 
-trait UuidTrait
+trait Uuids
 {
     /**
      * Boot function from Laravel.
      */
-    protected static function bootUuidTrait()
+    protected static function bootUuids()
     {
         static::creating(function ($model) {
             if (empty($model->uuid)) {

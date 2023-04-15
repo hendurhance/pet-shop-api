@@ -72,12 +72,13 @@ class AuthenticateRepository implements AdminAuthenticateRepositoryInterface
     {
         return $this->createUserAction->execute($data, UserTypeEnum::IS_ADMIN);
     }
-    
+
     /**
      * Update last login at
      * @param User $user
      */
-    public function lastLoginAt(User $user){
+    public function lastLoginAt(User $user)
+    {
         $user->update(['last_login_at' => Carbon::now()]);
     }
 }

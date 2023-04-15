@@ -1,0 +1,2727 @@
+{
+	"info": {
+		"_postman_id": "834bf68f-b756-4035-8658-0afffcace4e4",
+		"name": "Pet Shop API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12014982"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Create Admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "first_name",
+											"value": "Jane",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Doe",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "jane@example.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "@123Test",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "@123Test",
+											"type": "text"
+										},
+										{
+											"key": "avatar",
+											"value": "a2638e17-29fa-4dae-9413-e4886787485f",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "A test adress boys",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "1234567890",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/admin/create",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"admin",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Admin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "jane@example.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "@123Test",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/admin/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout Admin",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/admin/logout",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"admin",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "List All Users",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Edit User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "first_name",
+											"value": "Helen",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Femi",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "helen12@example.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "@Test123",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "@Test123",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Nabellah 12 Street",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "123456789",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/admin/user-edit/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"admin",
+										"user-edit",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "588af235-751d-4ee1-960b-50e3ad445419"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/admin/user-delete/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"admin",
+										"user-delete",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "f1686a90-0466-461a-953a-b43a61a00f88"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "first_name",
+											"value": "Tail",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Light",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "tail@light.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "@Tail123",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "@Tail123",
+											"type": "text"
+										},
+										{
+											"key": "avatar",
+											"value": "815aa5f1-6481-4228-9c13-acdf73968f75",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "New Street Boyz",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "234567890",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/user/create",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"user",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse the response body as JSON",
+											"const parsedResponseBody = pm.response.json();",
+											"",
+											"// Extract the access token value from the response body",
+											"const accessToken = parsedResponseBody.data.token;",
+											"",
+											"// Set the value of the environment variable \"BEARER_TOKEN\"",
+											"pm.environment.set(\"BEARER_TOKEN\", accessToken);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "tail@light.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "@Tail123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/user/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/user/logout",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"user",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Forgot Password",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "hartmann.gage@example.net",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/user/forgot-password",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"user",
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset Password Token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "dFU1VTMzOUJYaElOR1Vsa3B4WmpUMFd6V1VQVnQ3RGhodTgwSHNSMWdFSHljM1dPQ3JWemZSR1dHTXA0",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hartmann.gage@example.net",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "@Test123",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "@Test123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/user/reset-password-token",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"user",
+										"reset-password-token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "View User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/user",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "first_name",
+											"value": "New Tail",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Light",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "tail@light.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "@Tail123",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "@Tail123",
+											"type": "text"
+										},
+										{
+											"key": "avatar",
+											"value": "815aa5f1-6481-4228-9c13-acdf73968f75",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "New Street Boyz",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "23456789078",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/user/edit",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"user",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/user",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/user/orders?desc=0&limit=2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"user",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "title",
+											"disabled": true
+										},
+										{
+											"key": "desc",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "File",
+					"item": [
+						{
+							"name": "Upload a File",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/hendurhance/Downloads/dummy.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/file/upload",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"file",
+										"upload"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find a File",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/file/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"file",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "bad1b8cb-0acd-4549-b9c4-6ab08977829b"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Brand",
+					"item": [
+						{
+							"name": "Create Brand",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "hello test",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/brand",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"brand"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Brand",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "Dolce",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/brand/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"brand",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "2ddd0906-7d51-4390-8207-c1f96a6b0587"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Brand",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/brand/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"brand",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "2ddd0906-7d51-4390-8207-c1f96a6b0587"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch Brand",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/brand/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"brand",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "42c59b89-c27e-4472-91a9-9b3a2689d3c0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Brands",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/brands?limit=2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"brands"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "title",
+											"disabled": true
+										},
+										{
+											"key": "desc",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Promotion",
+					"item": [
+						{
+							"name": "List All Promotion",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/main/promotions?page=1&sortBy=title&desc=0&limit=2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"main",
+										"promotions"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "sortBy",
+											"value": "title"
+										},
+										{
+											"key": "desc",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Blog",
+					"item": [
+						{
+							"name": "List All Blog",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/main/blog",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"main",
+										"blog"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "title",
+											"disabled": true
+										},
+										{
+											"key": "desc",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Blog",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/main/blog/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"main",
+										"blog",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "d01080d6-cbf0-41af-ab8c-7050e9c97ce0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "Create a Category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Fanta",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/category",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/category/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"category",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "bb4cc23e-c0f6-4f73-a288-d0e6507ce3a7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "Coke",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/category/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"category",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "bb4cc23e-c0f6-4f73-a288-d0e6507ce3a7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Categories",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/categories?page=1&sortBy=title&desc=1&limit=1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"categories"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "sortBy",
+											"value": "title"
+										},
+										{
+											"key": "desc",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/category/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"category",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "bb4cc23e-c0f6-4f73-a288-d0e6507ce3a7"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "Create Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category_uuid",
+											"value": "4318dde7-bd3d-4b4a-8fd2-3037f538aacd",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Viola",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "2000",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "A new viola product",
+											"type": "text"
+										},
+										{
+											"key": "metadata",
+											"value": "{\n  \"image\": \"58f1694d-b7f1-4f7a-94e4-8fe9f3f5c271\",\n  \"brand\": \"27b5f903-c621-4ef6-a8d4-379c51c0f2f7\"\n}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/product",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "category_uuid",
+											"value": "4318dde7-bd3d-4b4a-8fd2-3037f538aacd",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "Change One",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "A new viola product",
+											"type": "text"
+										},
+										{
+											"key": "metadata",
+											"value": "{\"image\": \"58f1694d-b7f1-4f7a-94e4-8fe9f3f5c271\",\"brand\": \"27b5f903-c621-4ef6-a8d4-379c51c0f2f7\"}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/product/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"product",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "74c8acd5-a2ea-48c1-a213-b61cc6ce1273"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/product/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"product",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "74c8acd5-a2ea-48c1-a213-b61cc6ce1273"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Product",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/products?desc=0&limit=2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"products"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "title",
+											"disabled": true
+										},
+										{
+											"key": "desc",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Product",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/product/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"product",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "e9d3bdfb-82c3-474b-8a73-09273157d675"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order Status",
+					"item": [
+						{
+							"name": "Create Order Status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "delivered",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/order-status/create",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"order-status",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Order Status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "closed",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/order-status/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"order-status",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "84885b45-01eb-405e-a8f3-ed2e5a66256d"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Order Status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/order-status/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"order-status",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "c770b435-3df3-4396-937f-0bec871fe1a8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Order Statuses",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Order Status",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/order-status/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"order-status",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "a21426a2-2346-486c-82c3-37ffb119d827"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Payment",
+					"item": [
+						{
+							"name": "Create Payment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"credit_card\",\n    \"details\": {\n        \"holder_name\": \"Jane Forester\",\n        \"number\": \"456789091876\",\n        \"ccv\": \"782\",\n        \"expire_date\": \"10/21\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/payment/create",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"payment",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Payment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"credit_card\",\n    \"details\": {\n        \"holder_name\": \"Jane Foster\",\n        \"number\": \"345678902892\",\n        \"ccv\": \"782\",\n        \"expire_date\": \"20/2120\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/payment/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"payment",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "4b54af64-1e02-4e49-a885-de7882e6de42"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Payment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/payment/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"payment",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "4b54af64-1e02-4e49-a885-de7882e6de42"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Payments",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/payments?desc=0&limit=2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"payments"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "title",
+											"disabled": true
+										},
+										{
+											"key": "desc",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Payment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/payment/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"payment",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "a509f5b1-756b-48fe-8b14-9868bf59334a"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "Create Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"order_status_uuid\": \"85583eb0-c4e8-4861-bc53-56759d20ebdd\",\n    \"payment_uuid\": \"f9849c15-eea7-4e49-a777-e0f64543f20c\",\n    \"address\": {\n        \"shipping\": \"93942 Giovanna Hill\\nLelahtown, LA 93808-3021\",\n        \"billing\": \"86304 Walter Mountain Suite 152\\nDejuantown, NE 01766-0758\"\n    },\n    \"products\": [\n        {\n            \"uuid\": \"bb4ea9a7-a77e-4251-b972-86ff10e0c74c\",\n            \"quantity\": 3\n        },\n        {\n            \"uuid\": \"5fdd8ca5-d1e4-4b42-99f6-f4bfae412ebc\",\n            \"quantity\": 1\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/order/create",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"order",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/order/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"order",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "94747e8f-dc67-4489-88e8-bdf49d6128cf"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/orders?desc=0&limit=2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "title",
+											"disabled": true
+										},
+										{
+											"key": "desc",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Orders Dashboard",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/orders/dashboard",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"orders",
+										"dashboard"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "title",
+											"disabled": true
+										},
+										{
+											"key": "desc",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "fixRange",
+											"value": "monthly",
+											"disabled": true
+										},
+										{
+											"key": "dateRange[to]",
+											"value": "14-04-2023",
+											"disabled": true
+										},
+										{
+											"key": "dateRange[from]",
+											"value": "13-04-2023",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/order/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"order",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "231e475b-821d-4529-9dbe-20c54c2f9146"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"order_status_uuid\": \"85583eb0-c4e8-4861-bc53-56759d20ebdd\",\n    \"payment_uuid\": \"f9849c15-eea7-4e49-a777-e0f64543f20c\",\n    \"address\": {\n        \"shipping\": \"93942 Test Hill\\nLelahtown, LA 93808-3021\",\n        \"billing\": \"86304 Helen Mountain Suite 152\\nDejuantown, NE 01766-0758\"\n    },\n    \"products\": [\n        {\n            \"uuid\": \"bb4ea9a7-a77e-4251-b972-86ff10e0c74c\",\n            \"quantity\": 5\n        },\n        {\n            \"uuid\": \"5fdd8ca5-d1e4-4b42-99f6-f4bfae412ebc\",\n            \"quantity\": 1\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/order/:uuid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"order",
+										":uuid"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "1974dfe5-90f5-4ebd-9750-14d727720a6f"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Orders Dashboard Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/orders/shipment-locator?customerUuid=8fedd65d-0222-47e0-b55f-bd278f5dbe3d&orderUuid=1974dfe5-90f5-4ebd-9750-14d727720a6f",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"orders",
+										"shipment-locator"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "title",
+											"disabled": true
+										},
+										{
+											"key": "desc",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "fixRange",
+											"value": "monthly",
+											"disabled": true
+										},
+										{
+											"key": "dateRange[to]",
+											"value": "14-04-2023",
+											"disabled": true
+										},
+										{
+											"key": "dateRange[from]",
+											"value": "13-04-2023",
+											"disabled": true
+										},
+										{
+											"key": "customerUuid",
+											"value": "8fedd65d-0222-47e0-b55f-bd278f5dbe3d"
+										},
+										{
+											"key": "orderUuid",
+											"value": "1974dfe5-90f5-4ebd-9750-14d727720a6f"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/order/:uuid/download",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"order",
+										":uuid",
+										"download"
+									],
+									"variable": [
+										{
+											"key": "uuid",
+											"value": "94747e8f-dc67-4489-88e8-bdf49d6128cf"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

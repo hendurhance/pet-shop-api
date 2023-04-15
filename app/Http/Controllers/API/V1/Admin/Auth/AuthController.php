@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
-
     /**
      * AuthController constructor.
      * @param AuthenticateRepository $authenticateRepository
@@ -30,9 +29,10 @@ class AuthController extends Controller
     public function create(CreateAdminRequest $request)
     {
         $data = $this->authenticateRepository->create($request->validated());
+
         return $this->success($data, 'Admin created successfully', Response::HTTP_CREATED);
     }
-    
+
     /**
      * Login Admin User
      * @param LoginAdminRequest $request
@@ -41,6 +41,7 @@ class AuthController extends Controller
     public function login(LoginAdminRequest $request)
     {
         $data = $this->authenticateRepository->login($request->validated());
+
         return $this->success($data, 'Admin logged in successfully', Response::HTTP_OK);
     }
 
@@ -51,6 +52,7 @@ class AuthController extends Controller
     public function logout()
     {
         $data = $this->authenticateRepository->logout();
+
         return $this->success($data, 'Admin logged out successfully', Response::HTTP_OK);
     }
 }

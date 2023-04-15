@@ -5,8 +5,8 @@ namespace App\Actions\Auth;
 use App\Exceptions\Auth\UnauthorizedException;
 use Illuminate\Support\Facades\Auth;
 
-final class AuthAction {
-
+class AuthAction
+{
     /**
      * Authenticate a user/admin and return a token.
      * @param array $data
@@ -16,7 +16,10 @@ final class AuthAction {
     public function authenticate(array $data): string
     {
         $token = Auth::attempt($data);
-        if(!$token) throw new UnauthorizedException();
+        if (!$token) {
+            throw new UnauthorizedException();
+        }
+
         return $token;
     }
 

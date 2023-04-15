@@ -88,6 +88,8 @@ class OrderController extends Controller
     /**
      * List order shipping locator
      * 
+     * @param OrderShippingListingRequest $request
+     * @return \App\Traits\HttpResponse
      */
     public function shipmentLocator(OrderShippingListingRequest $request)
     {

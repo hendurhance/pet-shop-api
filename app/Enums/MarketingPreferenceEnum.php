@@ -31,5 +31,4 @@ enum MarketingPreferenceEnum: int
     {
         return implode(',', array_keys(self::toArray()));
     }
-    
 }

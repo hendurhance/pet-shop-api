@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class OrderNotFoundException extends Exception
 {
-    //
     use HttpResponse;
 
     // exception can only user custom message

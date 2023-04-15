@@ -6,7 +6,7 @@ use App\Enums\UserTypeEnum;
 use App\Models\User;
 use Carbon\Carbon;
 
-final class CreateUserAction
+class CreateUserAction
 {
     /**
      * Create a new user.
@@ -30,7 +30,5 @@ final class CreateUserAction
 
         return $user;
     }
-
-    
 }
 

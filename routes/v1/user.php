@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('health-check', function () {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'User API is running',
+    ]);
+})->name('health-check');
+
 /*
 |--------------------------------------------------------------------------
 | User & Auth Namespace
@@ -46,7 +53,6 @@ Route::group([
     });
 });
 
-
 /*
 | -------------------------------------------------------------------
 |  MainPage API Routes
@@ -75,11 +81,11 @@ Route::group([
     Route::get('/categories', 'CategoryController@index')->name('category.index');
 });
 
-// /*
-// | -------------------------------------------------------------------
-// | Brands API Routes
-// | -------------------------------------------------------------------
-// */
+/*
+| -------------------------------------------------------------------
+| Brands API Routes
+| -------------------------------------------------------------------
+*/
 
 Route::group([
     'namespace' => 'Brand',
@@ -106,7 +112,6 @@ Route::group([
     Route::resource('order', 'OrderController')->except(['create', 'index']);
     Route::get('/order/{uuid}/download', 'OrderController@download')->name('order.download');
 });
-
 
 /*
 | -------------------------------------------------------------------

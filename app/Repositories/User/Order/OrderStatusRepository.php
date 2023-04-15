@@ -10,7 +10,7 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
 {
     /**
      * List all order statuses
-     * 
+     *
      * @param array $filters
      * @param int $paginate
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
@@ -19,31 +19,33 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
     {
         $query = OrderStatus::query();
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
-        if(isset($filters['page'])) $query->wherePage($filters['page']);
+        if(isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }
 
     /**
      * Find an order status
-     * 
+     *
      * @param string $uuid
      * @return \App\Models\OrderStatus
      */
     public function find(string $uuid)
     {
-        $orderStatus = OrderStatus::whereUuid($uuid)->firstOr(function () {
+        return OrderStatus::whereUuid($uuid)->firstOr(function () {
             throw new OrderStatusNotFoundException();
         });
-
-        return $orderStatus;
     }
 
     /**
      * Create an order status
-     * 
+     *
      * @param string $title
      * @return \App\Models\OrderStatus
      */
@@ -56,7 +58,7 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
 
     /**
      * Update an order status
-     * 
+     *
      * @param string $uuid
      * @param string $title
      * @return \App\Models\OrderStatus
@@ -73,7 +75,7 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
 
     /**
      * Delete an order status
-     * 
+     *
      * @param string $uuid
      * @return void
      */
