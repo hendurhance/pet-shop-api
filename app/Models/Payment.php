@@ -32,6 +32,16 @@ class Payment extends Model
     ];
 
     /**
+     * Get the orders that has the payment.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
      * Instantiate a new QueryBuilder instance.
      */
     public function newEloquentBuilder($query): PaymentBuilder

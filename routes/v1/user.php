@@ -89,23 +89,23 @@ Route::group([
     Route::get('/brands', 'BrandController@index')->name('brand.index');
 });
 
-// /*
-// | -------------------------------------------------------------------
-// |  Orders API Routes
-// | -------------------------------------------------------------------
-// */
+/*
+| -------------------------------------------------------------------
+|  Orders API Routes
+| -------------------------------------------------------------------
+*/
 
-// Route::group([
-//     'namespace' => 'Order',
-// ], function () {
-//     Route::get('/orders', 'OrderController@index')->name('orders.index');
-//     Route::get('/orders/shipment-locator', 'OrderController@shipmentLocator')->name('orders.shipment-locator');
-//     Route::get('/orders/dashboard', 'OrderController@dashboard')->name('orders.dashboard');
-//     Route::post('/orders', 'OrderController@create')->name('orders.create');
+Route::group([
+    'namespace' => 'Order',
+], function () {
+    Route::get('/orders', 'OrderController@index')->name('orders.index');
+    Route::get('/orders/shipment-locator', 'OrderController@shipmentLocator')->name('orders.shipment-locator');
+    Route::get('/orders/dashboard', 'OrderController@dashboard')->name('orders.dashboard');
+    Route::post('/orders', 'OrderController@store')->name('orders.store');
 
-//     Route::resource('order', 'OrderController')->except(['create', 'index']);
-//     Route::get('/order/{uuid}/download', 'OrderController@products')->name('order.download');
-// });
+    Route::resource('order', 'OrderController')->except(['create', 'index']);
+    Route::get('/order/{uuid}/download', 'OrderController@products')->name('order.download');
+});
 
 
 /*
