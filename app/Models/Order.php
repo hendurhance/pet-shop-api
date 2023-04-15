@@ -4,8 +4,11 @@ namespace App\Models;
 
 use App\Builders\Order\OrderBuilder;
 use App\Traits\UuidTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+use function PHPSTORM_META\map;
 
 class Order extends Model
 {
@@ -70,27 +73,45 @@ class Order extends Model
     }
 
     /**
-     * Get the products for the order.
+     * Get total amount of the order
      * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Suppo
+     */
+    public function total(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->attributes['amount'] + $this->attributes['delivery_fee'],
+        );
+    }
+
+    /**
+     * Get the products associated with the order.
      */
     public function products()
     {
-        // TODO:
-        // get the products from json table in Order model with the following structure:
-        // [
-        //     [
-        //         'product' => '4567890-1234-5678-9012-123456789012',
-        //         'quantity' => 1,
-        //     ],
-        //     [
-        //         'product' => '4567890-1234-5678-9012-123456789012',
-        //         'quantity' => 1,
-        //     ],
-        // Connect the products with the products table using the product uuid
-        $productJson = $this->attributes['products'];
-        $productUuids = array_column($productJson, 'product');
-        return Product::whereIn('uuid', $productUuids)->get();
+        return Product::whereIn('uuid', collect($this->getAttribute('products'))->map(fn ($product) => $product['product'])->unique()->values());
+    }
+
+    /**
+     * Get the products associated with the order with quantity.
+     * 
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getProductsWithQuantityAttribute()
+    {
+        $productIds = collect($this->getAttribute('products'))->pluck('product')->unique()->values();
+        $products = Product::whereIn('uuid', $productIds)->get();
+
+        $products = $products->map(function ($product) {
+            $product->quantity = collect($this->getAttribute('products'))
+                ->where('product', $product->uuid)
+                ->pluck('quantity')
+                ->first();
+
+            return $product;
+        });
+
+        return $products;
     }
 
     /**

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('order_status_id')->references('id')->on('order_statuses')->cascadeOnDelete();
-            $table->foreignId('payment_id')->references('id')->on('payments')->cascadeOnDelete();
+            $table->foreignId('payment_id')->nullable()->references('id')->on('payments')->cascadeOnDelete();
             $table->uuid('uuid')->unique()->index()->comment('UUID to allow easy migration between envs without breaking FK in the logic');
             $table->json('products')->comment('JSON array of products');
             $table->json('address')->comment('JSON array of address, billing and shipping');

@@ -101,10 +101,10 @@ Route::group([
     Route::get('/orders', 'OrderController@index')->name('orders.index');
     Route::get('/orders/shipment-locator', 'OrderController@shipmentLocator')->name('orders.shipment-locator');
     Route::get('/orders/dashboard', 'OrderController@dashboard')->name('orders.dashboard');
-    Route::post('/orders', 'OrderController@store')->name('orders.store');
+    Route::post('/order/create', 'OrderController@store')->name('orders.store');
 
     Route::resource('order', 'OrderController')->except(['create', 'index']);
-    Route::get('/order/{uuid}/download', 'OrderController@products')->name('order.download');
+    Route::get('/order/{uuid}/download', 'OrderController@download')->name('order.download');
 });
 
 
