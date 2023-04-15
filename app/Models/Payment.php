@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Builders\Order\OrderStatusBuilder;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PaymentBuilder;
 
-class OrderStatus extends Model
+class Payment extends Model
 {
     use HasFactory, UuidTrait;
 
@@ -17,14 +17,25 @@ class OrderStatus extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+        'uuid',
+        'type',
+        'details'
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'details' => 'array'
     ];
 
     /**
      * Instantiate a new QueryBuilder instance.
      */
-    public function newEloquentBuilder($query): OrderStatusBuilder
+    public function newEloquentBuilder($query): PaymentBuilder
     {
-        return new OrderStatusBuilder($query);
+        return new PaymentBuilder($query);
     }
 }

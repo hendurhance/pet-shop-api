@@ -10,6 +10,7 @@ use App\Contracts\Repositories\User\BrandRepositoryInterface;
 use App\Contracts\Repositories\User\CategoryRepositoryInterface;
 use App\Contracts\Repositories\User\FileRepositoryInterface;
 use App\Contracts\Repositories\User\OrderStatusRepositoryInterface;
+use App\Contracts\Repositories\User\PaymentRepositoryInterface;
 use App\Contracts\Repositories\User\ProductRepositoryInterface;
 use App\Contracts\Repositories\User\PromotionRepositoryInterface;
 use App\Contracts\Repositories\User\UserRepositoryInterface as MainUserRepositoryInterface;
@@ -21,6 +22,7 @@ use App\Repositories\User\Brand\BrandRepository;
 use App\Repositories\User\Category\CategoryRepository;
 use App\Repositories\User\File\FileRepository;
 use App\Repositories\User\Order\OrderStatusRepository;
+use App\Repositories\User\Payment\PaymentRepository;
 use App\Repositories\User\Product\ProductRepository;
 use App\Repositories\User\Promotion\PromotionRepository;
 use App\Repositories\User\User\UserRepository as MainUserRepository;
@@ -88,6 +90,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             OrderStatusRepositoryInterface::class,
             OrderStatusRepository::class
+        );
+
+        $this->app->bind(
+            PaymentRepositoryInterface::class,
+            PaymentRepository::class
         );
     }
 }

@@ -122,19 +122,19 @@ Route::group([
     Route::get('/order-statuses', 'OrderStatusController@index')->name('order.status.index');
 });
 
-// /*
-// | -------------------------------------------------------------------
-// | Payment API Routes
-// | -------------------------------------------------------------------
-// */
+/*
+| -------------------------------------------------------------------
+| Payment API Routes
+| -------------------------------------------------------------------
+*/
 
-// Route::group([
-//     'namespace' => 'Payment',
-// ], function () {
-//     Route::post('/payment', 'PaymentController@create')->name('payment.create');
-//     Route::resource('/payment', 'PaymentController')->except(['create', 'index']);
-//     Route::get('/payments', 'PaymentController@index')->name('payment.index');
-// });
+Route::group([
+    'namespace' => 'Payment',
+], function () {
+    Route::post('/payment', 'PaymentController@store')->name('payment.store');
+    Route::resource('/payment', 'PaymentController')->except(['create', 'index']);
+    Route::get('/payments', 'PaymentController@index')->name('payment.index');
+});
 
 /*
 | -------------------------------------------------------------------
