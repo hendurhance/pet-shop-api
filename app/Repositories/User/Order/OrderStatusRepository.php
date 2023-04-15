@@ -34,11 +34,9 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
      */
     public function find(string $uuid)
     {
-        $orderStatus = OrderStatus::whereUuid($uuid)->firstOr(function () {
+        return OrderStatus::whereUuid($uuid)->firstOr(function () {
             throw new OrderStatusNotFoundException();
         });
-
-        return $orderStatus;
     }
 
     /**

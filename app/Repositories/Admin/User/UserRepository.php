@@ -3,11 +3,11 @@
 namespace App\Repositories\Admin\User;
 
 use App\Contracts\Repositories\Admin\UserRepositoryInterface as AdminUserRepositoryInterface;
+use App\Enums\UserTypeEnum;
 use App\Exceptions\User\UserNotFoundException;
 use App\Models\User;
 use App\Traits\HttpResponse;
-use App\Types\Uuid;
-use Symfony\Component\HttpFoundation\Response;
+
 
 class UserRepository implements AdminUserRepositoryInterface
 {
@@ -21,7 +21,7 @@ class UserRepository implements AdminUserRepositoryInterface
      */
     public function listingUser(array $filters, int $paginate = 10)
     {
-        $query = User::query();
+        $query = User::query()->whereUserType(UserTypeEnum::IS_USER);
 
         if (isset($filters['first_name'])) $query->whereFirstName($filters['first_name']);
         
@@ -75,8 +75,12 @@ class UserRepository implements AdminUserRepositoryInterface
      */
     protected function findUser(string $uuid)
     {
-        return User::whereUuid($uuid)->firstOr(function () {
+        $user = User::whereUuid($uuid)->firstOr(function () {
             throw new UserNotFoundException();
         });
+
+        if($user->is_admin) throw new UserNotFoundException('You cannot perform this action on an admin user');
+
+        return $user;
     }
 }

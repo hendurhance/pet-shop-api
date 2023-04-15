@@ -30,7 +30,7 @@ class PaymentRepository implements PaymentRepositoryInterface
     {
         $payment = $this->fetch($uuid);
         $payment->update($data);
-        
+
         return $payment;
     }
 
@@ -72,7 +72,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
         if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
 
-        if(isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) $query->wherePage($filters['page']);
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }

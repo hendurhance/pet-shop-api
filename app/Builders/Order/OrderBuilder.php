@@ -2,24 +2,12 @@
 
 namespace App\Builders\Order;
 
+use App\Builders\BaseBuilder;
 use App\Enums\OrderStatusEnum;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 
-class OrderBuilder extends Builder
+class OrderBuilder extends BaseBuilder
 {
-    private const PER_PAGE = 10;
-
-    /**
-     * WHere UUID is.
-     * @param string $uuid
-     * @return self
-     */
-    public function whereUuid(string $uuid): self
-    {
-        return $this->where('uuid', $uuid);
-    }
-
     /**
      * Where user owns the order.
      * @param string $uuid
@@ -28,27 +16,6 @@ class OrderBuilder extends Builder
     public function whereUserOwns(string $id): self
     {
         return $this->where('user_id', $id);
-    }
-
-    /**
-     * Sort by
-     * @param string $column
-     * @param bool $desc = false
-     * @return self
-     */
-    public function sortBy(string $column, bool $desc = false): self
-    {
-        return $this->orderBy($column, $desc ? 'DESC' : 'ASC');
-    }
-
-    /**
-     * Where page is.
-     * @param int $page
-     * @return self
-     */
-    public function wherePage(int $page): self
-    {
-        return $this->skip(($page - 1) * self::PER_PAGE);
     }
 
     /**

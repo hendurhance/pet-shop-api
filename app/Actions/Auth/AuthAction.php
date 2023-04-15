@@ -16,7 +16,10 @@ final class AuthAction {
     public function authenticate(array $data): string
     {
         $token = Auth::attempt($data);
-        if(!$token) throw new UnauthorizedException();
+        if (!$token) {
+            throw new UnauthorizedException();
+        }
+        
         return $token;
     }
 

@@ -34,7 +34,7 @@ class CreateResetTokenAction
      */
     public function findUserByToken(string $token, string $email): ?User
     {
-        $user = DB::table('password_reset_tokens')
+        DB::table('password_reset_tokens')
             ->where('token', $token)
             ->where('email', $email)
             ->where('created_at', '>=', now()->subHours(24))
@@ -43,5 +43,15 @@ class CreateResetTokenAction
         return User::whereEmailExact($email)->firstOr(function () {
             throw new UserNotFoundException();
         });
+    }
+
+    /**
+     * Delete a reset token
+     * 
+     * @param  string  $email
+     */
+    public function deleteResetToken(string $email)
+    {
+        DB::table('password_reset_tokens')->where('email', $email)->delete();
     }
 }

@@ -26,7 +26,9 @@ class CreateProductRequest extends FormRequest
             'title' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'description' => 'required|string|max:255',
-            'metadata' => 'required|json',
+            'metadata' => 'required|array',
+            'metadata.brand' => 'required|uuid|exists:brands,uuid',
+            'metadata.image' => 'required|uuid|exists:files,uuid',
         ];
     }
 }

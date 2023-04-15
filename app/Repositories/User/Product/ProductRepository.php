@@ -53,11 +53,9 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function fetch(string $uuid)
     {
-        $product = Product::whereUuid($uuid)->firstOr(function () {
+        return Product::whereUuid($uuid)->firstOr(function () {
             throw new ProductNotFoundException();
         });
-
-        return $product;
     }
 
     /**
