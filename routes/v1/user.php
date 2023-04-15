@@ -108,19 +108,19 @@ Route::group([
 // });
 
 
-// /*
-// | -------------------------------------------------------------------
-// |  Order Statuses API Routes
-// | -------------------------------------------------------------------
-// */
+/*
+| -------------------------------------------------------------------
+|  Order Statuses API Routes
+| -------------------------------------------------------------------
+*/
 
-// Route::group([
-//     'namespace' => 'Order/Status',
-// ], function () {
-//     Route::post('/order-status/create', 'OrderStatusController@create')->name('order.status.create');
-//     Route::resource('/order-status', 'OrderStatusController')->except(['create', 'index']);
-//     Route::get('/order-statuses', 'OrderStatusController@index')->name('order.status.index');
-// });
+Route::group([
+    'namespace' => 'Order/Status',
+], function () {
+    Route::post('/order-status/create', 'OrderStatusController@create')->name('order.status.create');
+    Route::resource('/order-status', 'OrderStatusController')->except(['create', 'index']);
+    Route::get('/order-statuses', 'OrderStatusController@index')->name('order.status.index');
+});
 
 // /*
 // | -------------------------------------------------------------------
