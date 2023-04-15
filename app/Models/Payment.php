@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Builders\Payment\PaymentBuilder;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use PaymentBuilder;
 
 class Payment extends Model
 {

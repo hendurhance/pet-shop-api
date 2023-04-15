@@ -3,6 +3,8 @@
 namespace App\Repositories\User\Payment;
 
 use App\Contracts\Repositories\User\PaymentRepositoryInterface;
+use App\Exceptions\Payment\PaymentNotFoundException;
+use App\Models\Payment;
 
 class PaymentRepository implements PaymentRepositoryInterface
 {
@@ -14,19 +16,22 @@ class PaymentRepository implements PaymentRepositoryInterface
      */
     public function create(array $data)
     {
-        //
+        return Payment::create($data);
     }
 
     /**
      * Update a payment
      * 
-     * @param string $uuid
      * @param array $data
+     * @param string $uuid
      * @return \App\Models\Payment
      */
-    public function update(string $uuid, array $data)
+    public function update(array $data, string $uuid)
     {
-        //
+        $payment = $this->fetch($uuid);
+        $payment->update($data);
+        
+        return $payment;
     }
 
     /**
@@ -37,7 +42,8 @@ class PaymentRepository implements PaymentRepositoryInterface
      */
     public function delete(string $uuid)
     {
-        //
+        $payment = $this->fetch($uuid);
+        $payment->delete();
     }
 
     /**
@@ -48,7 +54,9 @@ class PaymentRepository implements PaymentRepositoryInterface
      */
     public function fetch(string $uuid)
     {
-        //
+        return Payment::whereUuid($uuid)->firstOr(function () {
+            throw new PaymentNotFoundException();
+        });
     }
 
     /**
@@ -60,6 +68,12 @@ class PaymentRepository implements PaymentRepositoryInterface
      */
     public function listAll(array $filters, int $paginate = 10)
     {
-        //
+        $query = Payment::query();
+
+        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+
+        if(isset($filters['page'])) $query->wherePage($filters['page']);
+
+        return $query->paginate($filters['limit'] ?? $paginate);
     }
 }

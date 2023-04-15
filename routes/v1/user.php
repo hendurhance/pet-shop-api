@@ -131,7 +131,7 @@ Route::group([
 Route::group([
     'namespace' => 'Payment',
 ], function () {
-    Route::post('/payment', 'PaymentController@store')->name('payment.store');
+    Route::post('/payment/create', 'PaymentController@store')->name('payment.store');
     Route::resource('/payment', 'PaymentController')->except(['create', 'index']);
     Route::get('/payments', 'PaymentController@index')->name('payment.index');
 });

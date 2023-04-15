@@ -2,48 +2,83 @@
 
 namespace App\Http\Controllers\API\V1\User\Payment;
 
+use App\Contracts\Repositories\User\PaymentRepositoryInterface;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\Payment\CreatePaymentRequest;
+use App\Http\Requests\User\Payment\PaymentListingRequest;
+use App\Http\Requests\User\Payment\UpdatePaymentRequest;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * PaymentController constructor.
      */
-    public function index()
+    public function __construct(private PaymentRepositoryInterface $paymentRepository)
     {
-        //
+        $this->middleware('auth:api');
+        $this->middleware('role:user');
+        $this->paymentRepository = $paymentRepository;
     }
 
     /**
-     * Store a newly created resource in storage.
+     * List all payments
+     * 
+     * @param PaymentListingRequest $request
+     * @return \App\Traits\HttpResponse
      */
-    public function store(Request $request)
+    public function index(PaymentListingRequest $request)
     {
-        //
+        $payments = $this->paymentRepository->listAll($request->validated());
+        return $this->success($payments, 'Payments listed successfully');
     }
 
     /**
-     * Display the specified resource.
+     * Create a new payment
+     * 
+     * @param CreatePaymentRequest $request
+     * @return \App\Traits\HttpResponse
      */
-    public function show(string $id)
+    public function store(CreatePaymentRequest $request)
     {
-        //
+        $payment = $this->paymentRepository->create($request->validated());
+        return $this->success($payment, 'Payment created successfully');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Show a payment
+     * 
+     * @param string $uuid
+     * @return \App\Traits\HttpResponse
      */
-    public function update(Request $request, string $id)
+    public function show(string $uuid)
     {
-        //
+        $payment = $this->paymentRepository->fetch($uuid);
+        return $this->success($payment, 'Payment found successfully');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Update a payment
+     * 
+     * @param UpdatePaymentRequest $request
+     * @param string $uuid
      */
-    public function destroy(string $id)
+    public function update(UpdatePaymentRequest $request, string $uuid)
     {
-        //
+        $payment = $this->paymentRepository->update($request->validated(), $uuid);
+        return $this->success($payment, 'Payment updated successfully');
+    }
+
+    /**
+     * Delete a payment
+     * 
+     * @param string $uuid
+     * @return \App\Traits\HttpResponse
+     */
+    public function destroy(string $uuid)
+    {
+        $this->paymentRepository->delete($uuid);
+        return $this->success(null, 'Payment deleted successfully');
     }
 }
