@@ -10,7 +10,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 {
     /**
      * Create a new payment
-     * 
+     *
      * @param array $data
      * @return \App\Models\Payment
      */
@@ -21,7 +21,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     /**
      * Update a payment
-     * 
+     *
      * @param array $data
      * @param string $uuid
      * @return \App\Models\Payment
@@ -36,7 +36,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     /**
      * Delete a payment
-     * 
+     *
      * @param string $uuid
      * @return void
      */
@@ -48,7 +48,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     /**
      * Fetch a payment
-     * 
+     *
      * @param string $uuid
      * @return \App\Models\Payment
      */
@@ -61,7 +61,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     /**
      * List all payments
-     * 
+     *
      * @param array $filters
      * @param int $paginate = 10
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
@@ -70,9 +70,13 @@ class PaymentRepository implements PaymentRepositoryInterface
     {
         $query = Payment::query();
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
-        if (isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }

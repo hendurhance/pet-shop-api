@@ -30,40 +30,10 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * The version of the api.
-     * 
+     *
      * @var string
      */
     protected $apiVersion = 'V1';
-
-    /**
-     * Admin Routes
-     */
-    protected function mapAdminRoutes()
-    {
-        Route::group([
-            'middleware' => ['api'],
-            'namespace' => "{$this->apiNamespace}\\{$this->apiVersion}\\Admin",
-            'prefix'     => 'api/v1/admin',
-            'as'         => 'api.v1.admin.',
-        ], function($router){
-            require base_path('/routes/v1/admin.php');
-        });
-    }
-
-    /**
-     * User Routes
-     */
-    protected function mapUserRoutes()
-    {
-        Route::group([
-            'middleware' => ['api'],
-            'namespace' => "{$this->apiNamespace}\\{$this->apiVersion}\\User",
-            'prefix'     => 'api/v1',
-            'as'         => 'api.v1.',
-        ], function($router){
-            require base_path('/routes/v1/user.php');
-        });
-    }
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -83,6 +53,36 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+        });
+    }
+
+    /**
+     * Admin Routes
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::group([
+            'middleware' => ['api'],
+            'namespace' => "{$this->apiNamespace}\\{$this->apiVersion}\\Admin",
+            'prefix' => 'api/v1/admin',
+            'as' => 'api.v1.admin.',
+        ], function ($router) {
+            require base_path('/routes/v1/admin.php');
+        });
+    }
+
+    /**
+     * User Routes
+     */
+    protected function mapUserRoutes()
+    {
+        Route::group([
+            'middleware' => ['api'],
+            'namespace' => "{$this->apiNamespace}\\{$this->apiVersion}\\User",
+            'prefix' => 'api/v1',
+            'as' => 'api.v1.',
+        ], function ($router) {
+            require base_path('/routes/v1/user.php');
         });
     }
 

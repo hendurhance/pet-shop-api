@@ -26,7 +26,7 @@ class UserBuilder extends BaseBuilder
     {
         return $this->where('email', 'LIKE', "%{$email}%");
     }
-    
+
     /**
      * Where email is exact.
      * @param string $email

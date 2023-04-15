@@ -9,7 +9,7 @@ class PromotionRepository implements PromotionRepositoryInterface
 {
     /**
      * List all promotions
-     * 
+     *
      * @param array $filters
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
@@ -17,9 +17,13 @@ class PromotionRepository implements PromotionRepositoryInterface
     {
         $query = Promotion::query();
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
-        if(isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }

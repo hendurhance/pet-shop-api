@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Builders\Order\OrderStatusBuilder;
-use App\Traits\UuidTrait;
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderStatus extends Model
 {
-    use HasFactory, UuidTrait;
+    use HasFactory, Uuids;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +22,7 @@ class OrderStatus extends Model
 
     /**
      * Get the orders for the order status.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function orders()

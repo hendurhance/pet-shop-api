@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-
     /**
      * BrandController constructor.
      */
@@ -24,6 +23,7 @@ class BrandController extends Controller
 
     /**
      * List all brands
+     *
      * @param BrandListingRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -35,6 +35,7 @@ class BrandController extends Controller
 
     /**
      * Create a new Brand
+     *
      * @param CreateBrandRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -45,7 +46,10 @@ class BrandController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show a brand
+     *
+     * @param string $uuid
+     * @return \App\Traits\HttpResponse
      */
     public function show(string $uuid)
     {

@@ -9,8 +9,8 @@ use App\Contracts\Repositories\User\PaymentRepositoryInterface;
 use App\Contracts\Repositories\User\ProductRepositoryInterface;
 use App\Exceptions\Order\OrderNotFoundException;
 use App\Models\Order;
-use Illuminate\Support\Collection;
 use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Collection;
 
 class OrderRepository implements OrderRepositoryInterface
 {
@@ -20,7 +20,7 @@ class OrderRepository implements OrderRepositoryInterface
     private $authAction;
 
     /**
-     *  AuthRepository Constructor
+     * AuthRepository Constructor
      */
     public function __construct(
         private OrderStatusRepositoryInterface $orderStatusRepository,
@@ -34,7 +34,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     /**
      * Create a new order
-     * 
+     *
      * @param array $data
      * @return \App\Models\Order
      */
@@ -61,7 +61,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     /**
      * Update an order
-     * 
+     *
      * @param array $data
      * @param string $uuid
      * @return \App\Models\Order
@@ -88,7 +88,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     /**
      * Delete an order
-     * 
+     *
      * @param string $uuid
      * @return void
      */
@@ -100,7 +100,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     /**
      * Fetch an order with relationships
-     * 
+     *
      * @param string $uuid
      * @return \App\Models\Order
      */
@@ -113,7 +113,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     /**
      * Fetch an order
-     * 
+     *
      * @param string $uuid
      * @return \App\Models\Order
      */
@@ -127,7 +127,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     /**
      * List all orders
-     * 
+     *
      * @param array $filters
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -135,16 +135,20 @@ class OrderRepository implements OrderRepositoryInterface
     {
         $query = Order::query()->with('orderStatus', 'payment', 'user');
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
-        if (isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }
 
     /**
      * List all orders for auth user
-     * 
+     *
      * @param array $filters
      * @param int $paginate
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
@@ -154,16 +158,20 @@ class OrderRepository implements OrderRepositoryInterface
         $user = $this->authAction->user();
         $query = Order::query()->whereUserOwns($user->id)->with('orderStatus', 'payment', 'user');
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
-        if (isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }
 
     /**
      * List all orders for shipment locator
-     * 
+     *
      * @param array $filters
      * @param int $paginate
      * @return \Illuminate\Database\Eloquent\Collection
@@ -172,24 +180,36 @@ class OrderRepository implements OrderRepositoryInterface
     {
         $query = Order::query()->whereShipped()->with('orderStatus', 'user');
 
-        if (isset($filters['customerUuid'])) $query->whereCustomerUuid($filters['customerUuid']);
+        if (isset($filters['customerUuid'])) {
+            $query->whereCustomerUuid($filters['customerUuid']);
+        }
 
-        if (isset($filters['orderUuid'])) $query->whereUuidLike($filters['orderUuid']);
+        if (isset($filters['orderUuid'])) {
+            $query->whereUuidLike($filters['orderUuid']);
+        }
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
-        if (isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
-        if (isset($filters['fixRange'])) $query->whereFixRange($filters['fixRange']);
+        if (isset($filters['fixRange'])) {
+            $query->whereFixRange($filters['fixRange']);
+        }
 
-        if (isset($filters['dateRange'])) $query->whereDateRange($filters['dateRange']);
+        if (isset($filters['dateRange'])) {
+            $query->whereDateRange($filters['dateRange']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }
 
     /**
      * List all orders for dashboard
-     * 
+     *
      * @param array $filters
      * @param int $paginate
      * @return \Illuminate\Database\Eloquent\Collection
@@ -198,20 +218,28 @@ class OrderRepository implements OrderRepositoryInterface
     {
         $query = Order::query()->with('orderStatus', 'payment', 'user');
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
-        if (isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
-        if (isset($filters['fixRange'])) $query->whereFixRange($filters['fixRange']);
+        if (isset($filters['fixRange'])) {
+            $query->whereFixRange($filters['fixRange']);
+        }
 
-        if (isset($filters['dateRange'])) $query->whereDateRange($filters['dateRange']);
+        if (isset($filters['dateRange'])) {
+            $query->whereDateRange($filters['dateRange']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }
 
     /**
      * Download an order
-     * 
+     *
      * @param string $uuid
      * @return \Illuminate\Http\Response
      */
@@ -225,7 +253,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     /**
      * Get the products
-     * 
+     *
      * @param array $products
      * @return \Illuminate\Support\Collection
      */
@@ -241,7 +269,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     /**
      * Calculate the amount
-     * 
+     *
      * @param \Illuminate\Support\Collection $products
      * @return float
      */

@@ -10,7 +10,7 @@ class ProductRepository implements ProductRepositoryInterface
 {
     /**
      * Create a product
-     * 
+     *
      * @param array $data
      * @return \App\Models\Product
      */
@@ -21,7 +21,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     /**
      * Update a product
-     * 
+     *
      * @param string $uuid
      * @param array $data
      * @return void
@@ -32,10 +32,10 @@ class ProductRepository implements ProductRepositoryInterface
         $product->update($data);
         return $product;
     }
-    
+
     /**
      * Delete a product
-     * 
+     *
      * @param string $uuid
      * @return void
      */
@@ -47,7 +47,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     /**
      * Fetch a product
-     * 
+     *
      * @param string $uuid
      * @return \App\Models\Product
      */
@@ -60,7 +60,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     /**
      * List all products
-     * 
+     *
      * @param array $filters
      * @param int $paginate = 10
      * @return \Illuminate\Pagination\LengthAwarePaginator
@@ -69,10 +69,13 @@ class ProductRepository implements ProductRepositoryInterface
     {
         $query = Product::query();
 
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
-
-        if(isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }

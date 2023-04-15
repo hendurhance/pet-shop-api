@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Builders\Product\ProductBuilder;
-use App\Traits\UuidTrait;
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, UuidTrait, SoftDeletes;
+    use HasFactory, Uuids, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

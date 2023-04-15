@@ -18,7 +18,6 @@ class ForgotPasswordController extends Controller
         $this->authenticateRepository = $authenticateRepository;
     }
 
-
     /**
      * Forgot password
      * @param ForgotUserPasswordRequest $request

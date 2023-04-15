@@ -39,69 +39,24 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(
-            AuthenticateRepositoryInterface::class,
-            AuthenticateRepository::class
-        );
+        $interfaces = [
+            AuthenticateRepositoryInterface::class => AuthenticateRepository::class,
+            UserRepositoryInterface::class => UserRepository::class,
+            AuthenticateUserRepositoryInterface::class => AuthenticateUserRepository::class,
+            MainUserRepositoryInterface::class => MainUserRepository::class,
+            FileRepositoryInterface::class => FileRepository::class,
+            BrandRepositoryInterface::class => BrandRepository::class,
+            PromotionRepositoryInterface::class => PromotionRepository::class,
+            BlogRepositoryInterface::class => BlogRepository::class,
+            CategoryRepositoryInterface::class => CategoryRepository::class,
+            ProductRepositoryInterface::class => ProductRepository::class,
+            OrderStatusRepositoryInterface::class => OrderStatusRepository::class,
+            PaymentRepositoryInterface::class => PaymentRepository::class,
+            OrderRepositoryInterface::class => OrderRepository::class,
+        ];
 
-        $this->app->bind(
-            UserRepositoryInterface::class,
-            UserRepository::class
-        );
-
-        $this->app->bind(
-            AuthenticateUserRepositoryInterface::class,
-            AuthenticateUserRepository::class
-        );
-
-        $this->app->bind(
-            MainUserRepositoryInterface::class,
-            MainUserRepository::class
-        );
-
-        $this->app->bind(
-            FileRepositoryInterface::class,
-            FileRepository::class
-        );
-
-        $this->app->bind(
-            BrandRepositoryInterface::class,
-            BrandRepository::class
-        );
-
-        $this->app->bind(
-            PromotionRepositoryInterface::class,
-            PromotionRepository::class
-        );
-
-        $this->app->bind(
-            BlogRepositoryInterface::class,
-            BlogRepository::class
-        );
-
-        $this->app->bind(
-            CategoryRepositoryInterface::class,
-            CategoryRepository::class
-        );
-
-        $this->app->bind(
-            ProductRepositoryInterface::class,
-            ProductRepository::class
-        );
-
-        $this->app->bind(
-            OrderStatusRepositoryInterface::class,
-            OrderStatusRepository::class
-        );
-
-        $this->app->bind(
-            PaymentRepositoryInterface::class,
-            PaymentRepository::class
-        );
-
-        $this->app->bind(
-            OrderRepositoryInterface::class,
-            OrderRepository::class
-        );
+        foreach ($interfaces as $interface => $repository) {
+            $this->app->bind($interface, $repository);
+        }
     }
 }

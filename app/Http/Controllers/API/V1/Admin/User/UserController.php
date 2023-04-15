@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    
-
     /**
      * UserController constructor.
      * @param UserRepositoryInterface $authenticateRepository

@@ -8,7 +8,6 @@ use App\Http\Requests\User\Order\OrderListingRequest;
 
 class OrderController extends Controller
 {
-
     /**
      * UserController constructor.
      * @param OrderRepositoryInterface $orderRepository
@@ -19,9 +18,10 @@ class OrderController extends Controller
         $this->middleware('auth:api');
         $this->middleware('role:user');
     }
+
     /**
      * Show all orders for the authenticated user
-     * 
+     *
      * @param OrderListingRequest $request
      * @return \App\Traits\HttpResponse
      */

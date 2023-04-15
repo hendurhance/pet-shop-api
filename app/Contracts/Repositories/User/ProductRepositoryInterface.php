@@ -2,7 +2,8 @@
 
 namespace App\Contracts\Repositories\User;
 
-interface ProductRepositoryInterface {
+interface ProductRepositoryInterface 
+{
     public function create(array $data);
     public function update(string $uuid, array $data);
     public function delete(string $uuid);

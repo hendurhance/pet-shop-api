@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     /**
      * List all products
-     * 
+     *
      * @param ProductListingRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -35,7 +35,7 @@ class ProductController extends Controller
 
     /**
      * Create a new Product
-     * 
+     *
      * @param CreateProductRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -47,7 +47,7 @@ class ProductController extends Controller
 
     /**
      * Show a product
-     * 
+     *
      * @param string $uuid
      * @return \App\Traits\HttpResponse
      */
@@ -59,7 +59,7 @@ class ProductController extends Controller
 
     /**
      * Update a product
-     * 
+     *
      * @param UpdateProductRequest $request
      * @param string $uuid
      * @return \App\Traits\HttpResponse
@@ -72,7 +72,7 @@ class ProductController extends Controller
 
     /**
      * Delete a product
-     * 
+     *
      * @param string $uuid
      * @return \App\Traits\HttpResponse
      */

@@ -2,7 +2,8 @@
 
 namespace App\Contracts\Repositories\User;
 
-interface BrandRepositoryInterface {
+interface BrandRepositoryInterface
+{
     public function create(string $title);
     public function update(string $uuid, string $title);
     public function delete(string $uuid);

@@ -10,28 +10,31 @@ class CategoryRepository implements CategoryRepositoryInterface
 {
     /**
      * List all categories
-     * 
+     *
      * @param array $filters
-     * @param int $paginate = 10 
+     * @param int $paginate = 10
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function listAll(array $filters, int $paginate = 10)
     {
         $query = Category::query();
 
-        if (isset($filters['sortBy'])) $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        if (isset($filters['sortBy'])) {
+            $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
+        }
 
-        if(isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
-
     }
 
     /**
      * Find category by uuid
-     * 
+     *
      * @param string $uuid
-    * @return \App\Models\Category
+     * @return \App\Models\Category
      */
     public function find(string $uuid)
     {
@@ -42,7 +45,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     /**
      * Create category
-     * 
+     *
      * @param string $title
      * @return \App\Models\Category
      */
@@ -55,7 +58,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     /**
      * Update category
-     * 
+     *
      * @param string $title
      * @param string $uuid
      * @return \App\Models\Category
@@ -71,7 +74,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     /**
      * Delete category
-     * 
+     *
      * @param string $uuid
      * @return void
      */

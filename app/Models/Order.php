@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Builders\Order\OrderBuilder;
-use App\Traits\UuidTrait;
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory, UuidTrait;
+    use HasFactory, Uuids;
 
     /**
      * The attributes that are mass assignable.
@@ -42,7 +42,7 @@ class Order extends Model
 
     /**
      * Get the user that owns the order.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
@@ -52,7 +52,7 @@ class Order extends Model
 
     /**
      * Get the order status that owns the order.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function orderStatus()
@@ -62,7 +62,7 @@ class Order extends Model
 
     /**
      * Get the payment that owns the order.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function payment()
@@ -72,7 +72,7 @@ class Order extends Model
 
     /**
      * Get total amount of the order
-     * 
+     *
      * @return \Illuminate\Suppo
      */
     public function total(): Attribute
@@ -92,7 +92,7 @@ class Order extends Model
 
     /**
      * Get the products associated with the order with quantity.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getProductsWithQuantityAttribute()
@@ -100,7 +100,7 @@ class Order extends Model
         $productIds = collect($this->getAttribute('products'))->pluck('product')->unique()->values();
         $products = Product::whereIn('uuid', $productIds)->get();
 
-        $products = $products->map(function ($product) {
+        return $products->map(function ($product) {
             $product->quantity = collect($this->getAttribute('products'))
                 ->where('product', $product->uuid)
                 ->pluck('quantity')
@@ -108,8 +108,6 @@ class Order extends Model
 
             return $product;
         });
-
-        return $products;
     }
 
     /**

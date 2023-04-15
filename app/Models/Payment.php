@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Builders\Payment\PaymentBuilder;
-use App\Traits\UuidTrait;
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    use HasFactory, UuidTrait;
+    use HasFactory, Uuids;
 
     /**
      * The attributes that are mass assignable.
@@ -33,7 +33,7 @@ class Payment extends Model
 
     /**
      * Get the orders that has the payment.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function orders()

@@ -6,8 +6,7 @@ namespace App\Models;
 
 use App\Builders\User\UserBuilder;
 use App\Enums\MarketingPreferenceEnum;
-use App\Enums\UserTypeEnum;
-use App\Traits\UuidTrait;
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +15,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable, UuidTrait;
+    use HasApiTokens, HasFactory, Notifiable, Uuids;
 
     /**
      * The attributes that are mass assignable.
@@ -80,14 +79,14 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * Get the orders for the user.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
-    
+
     /**
      * Instantiate a new QueryBuilder instance.
      */
