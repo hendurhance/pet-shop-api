@@ -69,7 +69,7 @@ class Product extends Model
     {
         return $this->metadata['image'];
     }
-    
+
     /**
      * Get the related brand.
      *

@@ -55,7 +55,7 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return Product::whereUuid($uuid)->firstOr(function () {
             throw new ProductNotFoundException();
-        });
+        })->load('category', 'brand', 'image');
     }
 
     /**
@@ -67,7 +67,7 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function listAll(array $filters, int $paginate = 10)
     {
-        $query = Product::query();
+        $query = Product::query()->with('category', 'brand', 'image');
 
         if (isset($filters['sortBy'])) {
             $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);

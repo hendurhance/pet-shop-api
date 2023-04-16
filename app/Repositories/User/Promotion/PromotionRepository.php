@@ -15,7 +15,7 @@ class PromotionRepository implements PromotionRepositoryInterface
      */
     public function listAll(array $filters, int $paginate = 10)
     {
-        $query = Promotion::query();
+        $query = Promotion::query()->with('image');
 
         if (isset($filters['sortBy'])) {
             $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);

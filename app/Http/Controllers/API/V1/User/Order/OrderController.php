@@ -26,7 +26,7 @@ class OrderController extends Controller
 
     /**
      * List all orders
-     * 
+     *
      * @param OrderListingRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -38,7 +38,7 @@ class OrderController extends Controller
 
     /**
      * Create a new order
-     * 
+     *
      * @param CreateOrderRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -50,7 +50,7 @@ class OrderController extends Controller
 
     /**
      * Show order details
-     * 
+     *
      * @param string $uuid
      * @return \App\Traits\HttpResponse
      */
@@ -62,7 +62,7 @@ class OrderController extends Controller
 
     /**
      * Update order details
-     * 
+     *
      * @param UpdateOrderRequest $request
      * @param string $uuid
      * @return \App\Traits\HttpResponse
@@ -75,7 +75,7 @@ class OrderController extends Controller
 
     /**
      * Delete an order
-     * 
+     *
      * @param string $uuid
      * @return \App\Traits\HttpResponse
      */
@@ -87,7 +87,7 @@ class OrderController extends Controller
 
     /**
      * List order shipping locator
-     * 
+     *
      * @param OrderShippingListingRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -99,7 +99,7 @@ class OrderController extends Controller
 
     /**
      * Populate orders in dashboard
-     * 
+     *
      * @param OrderPopulateRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -111,7 +111,7 @@ class OrderController extends Controller
 
     /**
      * Download order invoice
-     * 
+     *
      * @param string $uuid
      * @return \App\Traits\HttpResponse
      */

@@ -19,7 +19,7 @@ class PromotionController extends Controller
 
     /**
      * List all promotions
-     * 
+     *
      * @param PromotionListingRequest $request
      * @return \App\Traits\HttpResponse
      */

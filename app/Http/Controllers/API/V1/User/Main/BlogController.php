@@ -19,7 +19,7 @@ class BlogController extends Controller
 
     /**
      * List all blogs
-     * 
+     *
      * @param BlogListingRequest $request
      * @return \App\Traits\HttpResponse
      */
@@ -39,7 +39,7 @@ class BlogController extends Controller
 
     /**
      * Show a blog
-     * 
+     *
      * @param string $uuid
      * @return \App\Traits\HttpResponse
      */
