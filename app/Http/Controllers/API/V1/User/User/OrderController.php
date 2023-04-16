@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function __construct(private OrderRepositoryInterface $orderRepository)
     {
         $this->orderRepository = $orderRepository;
-        $this->middleware('auth:api');
+        $this->middleware('jwt.auth');
         $this->middleware('role:user');
     }
 
