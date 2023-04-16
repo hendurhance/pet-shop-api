@@ -3,7 +3,8 @@
 namespace App\Services\JWT;
 
 use Illuminate\Auth\GuardHelpers;
-use Illuminate\Contracts\Auth\{Guard, UserProvider};
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
 
 class JwtGuard implements Guard
@@ -45,6 +46,23 @@ class JwtGuard implements Guard
         return false;
     }
 
+    public function attempt(array $credentials = [], $login = true)
+    {
+        $this->lastAttempted = $user = $this->provider->retrieveByCredentials($credentials);
+
+        if ($this->hasValidCredentials($user, $credentials)) {
+            $this->user = $user;
+            return true;
+        }
+
+        return false;
+    }
+
+    public function authenticatedAccessToken($token)
+    {
+        return JwtParser::loadFromToken($token);
+    }
+
     protected function authenticateByToken()
     {
         if (!empty($this->user)) {
@@ -78,25 +96,8 @@ class JwtGuard implements Guard
         return $this->request->bearerToken();
     }
 
-    public function attempt(array $credentials = [], $login = true)
-    {
-        $this->lastAttempted = $user = $this->provider->retrieveByCredentials($credentials);
-
-        if ($this->hasValidCredentials($user, $credentials)) {
-            $this->user = $user;
-            return true;
-        }
-
-        return false;
-    }
-
     protected function hasValidCredentials($user, $credentials)
     {
         return $user !== null && $this->provider->validateCredentials($user, $credentials);
-    }
-
-    public function authenticatedAccessToken($token)
-    {
-        return JwtParser::loadFromToken($token);
     }
 }

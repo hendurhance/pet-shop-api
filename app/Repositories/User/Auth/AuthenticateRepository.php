@@ -51,7 +51,19 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
      */
     public function create(array $data)
     {
-        return $this->createUserAction->execute($data, UserTypeEnum::IS_USER);
+        $user = $this->createUserAction->execute($data, UserTypeEnum::IS_USER);
+        $token = $this->authAction->authenticate([
+            'email' => $user->email,
+            'password' => $data['password']
+        ]);
+        $this->lastLoginAt($user);
+
+        return [
+            'token' => $token,
+            'user' => $user,
+            'token_type' => 'jwt',
+            'expires_in' => config('jwt.ttl') * 60
+        ];
     }
 
     /**
