@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function __construct(private ProductRepositoryInterface $productRepository)
     {
         $this->productRepository = $productRepository;
-        $this->middleware('auth:api')->except(['index', 'show']);
+        $this->middleware('jwt.auth')->except(['index', 'show']);
         $this->middleware('role:user')->except(['index', 'show']);
     }
 

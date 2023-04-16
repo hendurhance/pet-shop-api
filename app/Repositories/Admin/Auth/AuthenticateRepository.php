@@ -70,7 +70,19 @@ class AuthenticateRepository implements AdminAuthenticateRepositoryInterface
      */
     public function create(array $data)
     {
-        return $this->createUserAction->execute($data, UserTypeEnum::IS_ADMIN);
+        $admin = $this->createUserAction->execute($data, UserTypeEnum::IS_ADMIN);
+        $token = $this->authAction->authenticate([
+            'email' => $admin->email,
+            'password' => $data['password']
+        ]);
+        $this->lastLoginAt($admin);
+
+        return [
+            'token' => $token,
+            'user' => $admin,
+            'token_type' => 'jwt',
+            'expires_in' => config('jwt.ttl') * 60
+        ];
     }
 
     /**

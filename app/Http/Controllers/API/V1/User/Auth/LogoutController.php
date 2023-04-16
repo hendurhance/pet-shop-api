@@ -15,7 +15,7 @@ class LogoutController extends Controller
      */
     public function __construct(private AuthenticateRepositoryInterface $authenticateRepository)
     {
-        $this->middleware('auth:api');
+        $this->middleware('jwt.auth');
         $this->middleware('role:user');
         $this->authenticateRepository = $authenticateRepository;
     }

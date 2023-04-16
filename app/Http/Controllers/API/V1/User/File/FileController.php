@@ -15,7 +15,7 @@ class FileController extends Controller
      */
     public function __construct(private FileRepositoryInterface $fileRepository)
     {
-        $this->middleware('auth:api')->only('upload');
+        $this->middleware('jwt.auth')->only('upload');
         $this->middleware('role:user')->only('upload');
         $this->fileRepository = $fileRepository;
     }
