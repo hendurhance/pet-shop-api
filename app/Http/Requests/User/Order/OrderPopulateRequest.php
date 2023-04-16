@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\User\Order;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class OrderPopulateRequest extends FormRequest
+class OrderPopulateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,15 +21,11 @@ class OrderPopulateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'page' => 'nullable|integer',
-            'limit' => 'nullable|integer',
-            'sortBy' => 'nullable|string',
-            'desc' => 'nullable|boolean',
+        return array_merge(parent::rules(), [
             'dateRange' => 'nullable|array',
             'dateRange.from' => 'nullable|date|before_or_equal:dateRange.to',
             'dateRange.to' => 'nullable|date|after_or_equal:dateRange.from',
             'fixRange' => 'nullable|in:today,monthly,yearly',
-        ];
+        ]);
     }
 }

@@ -11,6 +11,7 @@ use App\Exceptions\User\UserNotFoundException;
 use App\Models\User;
 use App\Traits\HttpResponse;
 use Carbon\Carbon;
+use Firebase\JWT\JWT;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Auth;
 

@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\User\Promotion;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class PromotionListingRequest extends FormRequest
+class PromotionListingRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +21,8 @@ class PromotionListingRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'page' => 'nullable|integer',
-            'limit' => 'nullable|integer',
-            'sortBy' => 'nullable|string',
-            'desc' => 'nullable|boolean',
-        ];
+        return array_merge(parent::rules(), [
+            // additional rules specific to this request
+        ]);
     }
 }
