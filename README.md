@@ -48,7 +48,7 @@ php artisan serve
 ```
 
 ## API Documentation
-The API documentation can be accessed at [http://localhost:8000/api/swagger](http://localhost:8000/api/swagger) after running the application.
+The API documentation can be accessed at [http://localhost:8000/api/swagger](http://localhost:8000/api/swagger) after running the application. Postman collection can be found in the base directory of the project named `petshopapi.postman_collection.json`. It contains all the endpoints and the request body.
 
 ## Architecture
 - Design Pattern: Repository Pattern
