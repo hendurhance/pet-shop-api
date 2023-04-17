@@ -20,7 +20,6 @@ class PaymentFactory extends Factory
     {
         $paymentTypes = PaymentTypeEnum::toArray();
         $randomType = $this->faker->randomElement($paymentTypes);
-        Log::info('Payment type: ' . $randomType);
         return [
             'type' => $randomType,
             'details' => $this->getDetails($randomType)

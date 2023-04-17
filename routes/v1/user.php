@@ -35,8 +35,8 @@ Route::group([
     Route::group([
         'namespace' => 'User'
     ], function () {
-        Route::get('/', 'UserController@show')->name('user.show');
-        Route::delete('/', 'UserController@destroy')->name('user.destroy');
+        Route::get('/', 'UserController@show')->name('show');
+        Route::delete('/', 'UserController@destroy')->name('destroy');
 
         Route::get('/orders', 'OrderController@index')->name('order.index');
         Route::put('/edit', 'UserController@edit')->name('edit');
@@ -46,7 +46,7 @@ Route::group([
         'namespace' => 'Auth'
     ], function () {
         Route::post('/login', 'LoginController@login')->name('login');
-        Route::post('/create', 'RegisterController@create')->name('register');
+        Route::post('/create', 'RegisterController@create')->name('create');
         Route::get('/logout', 'LogoutController@logout')->name('logout');
         Route::post('/forgot-password', 'ForgotPasswordController@forgotPassword')->name('forgot-password');
         Route::post('/reset-password-token', 'ResetPasswordController@resetPasswordToken')->name('reset-password-token');

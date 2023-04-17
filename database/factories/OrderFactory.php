@@ -51,10 +51,12 @@ class OrderFactory extends Factory
     {
         $productsArray = [];
         foreach ($products as $product) {
-            $productsArray[] = [
-                'product' => $product['uuid'],
-                'quantity' => $this->faker->numberBetween(1, 5),
-            ];
+            if (isset($product['uuid'])) {
+                $productsArray[] = [
+                    'product' => $product['uuid'],
+                    'quantity' => $this->faker->numberBetween(1, 5),
+                ];
+            }
         }
         return $productsArray;
     }
@@ -69,7 +71,7 @@ class OrderFactory extends Factory
     {
         $amount = 0;
         foreach ($products as $product) {
-            $amount += $product['quantity'] * Product::query()->whereUuid($product['uuid'])->first()->price;
+            $amount += $product['quantity'] * Product::query()->whereUuid($product['product'])->first()->price;
         }
         return $amount;
     }

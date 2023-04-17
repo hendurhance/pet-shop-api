@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'avatar' => fake()->uuid(),
             'address' => fake()->address(),
             'phone_number' => fake()->phoneNumber(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2y$10$ILZsOVioxxcgN7x5ZHFv9eU78VAcR2VmgCkK0rK.VSuQtmclfkTMW', // password
             'remember_token' => Str::random(10),
         ];
     }
@@ -48,7 +48,9 @@ class UserFactory extends Factory
     public function admin(): static
     {
         return $this->state(fn (array $attributes) => [
+            'email' => 'admin@buckhill.co.uk',
             'is_admin' => UserTypeEnum::IS_ADMIN,
+            'password' => '$2y$10$3IFjPh9frhZ8WRcD35RRV.CC4sW2HOZO1zeeCzHOLfp9.o1BAIH3C', // admin
         ]);
     }
 
