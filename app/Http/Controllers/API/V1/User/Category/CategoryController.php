@@ -58,7 +58,7 @@ class CategoryController extends Controller
     {
         $category = $this->categoryRepository->find($uuid);
 
-        return $this->success($category, 'Category fetched successfully');   
+        return $this->success($category, 'Category fetched successfully');
     }
 
     /**
