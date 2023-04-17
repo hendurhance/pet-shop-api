@@ -14,12 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('health-check', function () {
-    return response()->json([
-        'status' => 'success',
-        'message' => 'User API is running',
-    ]);
-})->name('health-check');
+Route::get('health-check', 'HealthCheckController@index')->name('health-check');
 
 /*
 |--------------------------------------------------------------------------
