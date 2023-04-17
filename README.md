@@ -83,7 +83,11 @@ The API documentation can be accessed at [http://localhost:8000/api/swagger](htt
 
 ## PHP Insights
 The PHP Insights for the project is:
+<img width="704" alt="image" src="https://user-images.githubusercontent.com/50846992/232543276-04cc4ac8-4cc7-41e2-863f-e49aba919f89.png">
 
+``` bash
+php artisan insights
+```
 
 
 ### Thanks for reading.
