@@ -27,7 +27,7 @@ class CreateResetTokenAction
 
     /**
      * Find a user by their reset token and email
-     * 
+     *
      * @param  string  $token
      * @param  string  $email
      * @return \App\Models\User|null
@@ -47,7 +47,7 @@ class CreateResetTokenAction
 
     /**
      * Delete a reset token
-     * 
+     *
      * @param  string  $email
      */
     public function deleteResetToken(string $email)

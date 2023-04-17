@@ -79,11 +79,9 @@ class JwtGuard implements Guard
 
         try {
             $decoded = $this->authenticatedAccessToken($token);
-            Log::info('tokenIsInvalidated: ' . $this->tokenIsInvalidated($decoded->getIdentifiedBy()));
             if (!$this->tokenIsInvalidated($decoded->getIdentifiedBy())) {
                 return null;
             }
-            
             if (!$decoded) {
                 $user = null;
             } else {

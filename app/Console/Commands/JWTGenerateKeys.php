@@ -49,7 +49,6 @@ class JWTGenerateKeys extends Command
 
         // Update the .env file with the new keys, if they don't already exist append them to the end of the file
         $envContents = file_get_contents($envPath);
-
         $envContents = preg_replace('/JWT_PUBLIC_KEY=.*/', 'JWT_PUBLIC_KEY=' . $publicKey, $envContents);
         $envContents = preg_replace('/JWT_PRIVATE_KEY=.*/', 'JWT_PRIVATE_KEY=' . $privateKey, $envContents);
 
@@ -62,8 +61,6 @@ class JWTGenerateKeys extends Command
         }
 
         file_put_contents($envPath, $envContents);
-
-        $this->info('JWT public and private key pair generated successfully.');
 
         $this->info('JWT public and private key pair generated successfully.');
     }
