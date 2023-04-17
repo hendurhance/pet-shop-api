@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\User\Order;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class OrderListingRequest extends FormRequest
+class OrderListingRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +21,8 @@ class OrderListingRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'page' => 'nullable|integer',
-            'limit' => 'nullable|integer',
-            'sortBy' => 'nullable|string',
-            'desc' => 'nullable|boolean',
-        ];
+        return array_merge(parent::rules(), [
+            // additional rules specific to this request
+        ]);
     }
 }

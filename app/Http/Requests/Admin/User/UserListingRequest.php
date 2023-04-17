@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Admin\User;
 
+use App\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserListingRequest extends FormRequest
+class UserListingRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,17 +22,13 @@ class UserListingRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'page' => 'nullable|integer',
-            'limit' => 'nullable|integer',
-            'sortBy' => 'nullable|string',
-            'desc' => 'nullable|boolean',
+        return array_merge(parent::rules(), [
             'first_name' => 'nullable|string',
             'email' => 'nullable|string',
             'phone' => 'nullable|string',
             'address' => 'nullable|string',
             'created_at' => 'nullable|string|date_format:Y-m-d',
             'marketing' => 'nullable|string',
-        ];
+        ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Builders\Product\ProductBuilder;
+use App\Traits\HasImage;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, Uuids, SoftDeletes;
+    use HasFactory, Uuids, HasImage, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -62,15 +63,6 @@ class Product extends Model
     }
 
     /**
-     * Get the image uuid of the metadata attribute.
-     * @return string
-     */
-    public function getImageUuidAttribute(): string
-    {
-        return $this->metadata['image'];
-    }
-
-    /**
      * Get the related brand.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -78,16 +70,6 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_uuid', 'uuid');
-    }
-
-    /**
-     * Get the related image.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function image()
-    {
-        return $this->belongsTo(File::class, 'image_uuid', 'uuid');
     }
 
     /**
