@@ -172,8 +172,90 @@
 						{
 							"name": "List All Users",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": []
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/{{VERSION}}/admin/user-listing?limit=5&sortBy=created_at&desc=0",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"{{VERSION}}",
+										"admin",
+										"user-listing"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "5"
+										},
+										{
+											"key": "sortBy",
+											"value": "created_at"
+										},
+										{
+											"key": "desc",
+											"value": "0"
+										},
+										{
+											"key": "first_name",
+											"value": "Jane",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "jane",
+											"disabled": true
+										},
+										{
+											"key": "phone",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "address",
+											"value": "Hailey",
+											"disabled": true
+										},
+										{
+											"key": "created_at",
+											"value": "2023-04-12",
+											"disabled": true
+										},
+										{
+											"key": "marketing",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
 							},
 							"response": []
 						},
