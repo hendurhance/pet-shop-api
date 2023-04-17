@@ -68,6 +68,15 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the user jwt tokens.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function jwtTokens()
+    {
+        return $this->hasMany(JwtTokens::class);
+    }
+
+    /**
      * Instantiate a new QueryBuilder instance.
      */
     public function newEloquentBuilder($query): UserBuilder

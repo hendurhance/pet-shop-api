@@ -89,7 +89,7 @@ class AuthenticateRepository implements AuthenticateUserRepositoryInterface
      */
     public function logout()
     {
-        Auth::logout();
+        $this->authAction->logout();
     }
 
     /**
