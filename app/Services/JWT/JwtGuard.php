@@ -2,10 +2,12 @@
 
 namespace App\Services\JWT;
 
+use App\Models\JwtTokens;
 use Illuminate\Auth\GuardHelpers;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class JwtGuard implements Guard
 {
@@ -77,7 +79,11 @@ class JwtGuard implements Guard
 
         try {
             $decoded = $this->authenticatedAccessToken($token);
-
+            Log::info('tokenIsInvalidated: ' . $this->tokenIsInvalidated($decoded->getIdentifiedBy()));
+            if (!$this->tokenIsInvalidated($decoded->getIdentifiedBy())) {
+                return null;
+            }
+            
             if (!$decoded) {
                 $user = null;
             } else {
@@ -99,5 +105,10 @@ class JwtGuard implements Guard
     protected function hasValidCredentials($user, $credentials)
     {
         return $user !== null && $this->provider->validateCredentials($user, $credentials);
+    }
+
+    protected function tokenIsInvalidated(string $identifyBy): bool
+    {
+        return JwtTokens::where('unique_id', $identifyBy)->exists();
     }
 }
