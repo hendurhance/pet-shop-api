@@ -98,5 +98,24 @@ The PHP Insights for the project is:
 php artisan insights
 ```
 
+# Level 3 Challenge - Currency Exchange Rate Package
+This is a package that can be used to get the exchange rate from EUR to other currencies. The package uses the [[Exchange Rates API](https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml)] to get the exchange rate.
+
+## GitHub Repository
+The GitHub repository for the package can be found [here](https://github.com/hendurhance/euro-currency-exchange).
+
+## Installation
+
+- The package can be found in the `packages/martian/currency-exchange-rate` directory.
+- The complete documentation of the package can be found in the `packages/martian/currency-exchange-rate/README.md` file or GitHub [here](https://github.com/hendurhance/euro-currency-exchange/blob/main/README.md).
+
+### Requirements
+- GET endpoint exposed to get the exchange rate from EUR to other currencies.
+- Have the following params
+    - `to` - The currency to convert to. This is required.
+    - `amount` - The amount to convert. This is optional. If not provided, the default value is 1.
+    - Since it is assumed that `EUR` is the base currency, the `from` param is not needed.
+- The package should be able to get the exchange rate from the [[Exchange Rates API](https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml)].
+- The package has a total of 9 unit tests.
 
 ### Thanks for reading.
