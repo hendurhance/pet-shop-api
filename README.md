@@ -22,6 +22,18 @@ git clone https://github.com/hendurhance/pet-shop-api
 ```bash
 cp .env.example .env
 ```
+- Start Docker Containers
+```bash
+docker-compose up (add -d to run detached)
+```
+- Connect to container to run the commands below
+```bash
+docker exec -it petshopapi-app-1 bash
+```
+- Make sure you are in the root directory of the project
+```bash
+cd /var/www/html
+```
 - Install the dependencies
 ```bash
 composer install
@@ -41,10 +53,6 @@ php artisan migrate --seed
 - Run tests, if you want to run the tests, you need to create a database named `petshopapi_test` and update the database credentials in the `env.testing` file.
 ```bash
 php artisan test
-```
-- Run the application
-```bash
-php artisan serve
 ```
 
 ## API Documentation
