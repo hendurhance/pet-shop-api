@@ -102,12 +102,13 @@ php artisan insights
 This is a package that can be used to get the exchange rate from EUR to other currencies. The package uses the [[Exchange Rates API](https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml)] to get the exchange rate.
 
 ## GitHub Repository
-The GitHub repository for the package can be found [here](https://github.com/hendurhance/euro-currency-exchange-rate/).
+The GitHub repository for the package can be found [here](https://github.com/hendurhance/euro-currency-exchange).
 
 ## Installation
 
 - The package can be found in the `packages/martian/currency-exchange-rate` directory.
-- The complete documentation of the package can be found in the `packages/martian/currency-exchange-rate/README.md` file or GitHub [here](https://github.com/hendurhance/euro-currency-exchange-rate/README.md).
+
+- The complete documentation of the package can be found in the `packages/martian/currency-exchange-rate/README.md` file or GitHub [here](https://github.com/hendurhance/euro-currency-exchange/blob/main/README.md).
 
 ### Requirements
 - GET endpoint exposed to get the exchange rate from EUR to other currencies.
