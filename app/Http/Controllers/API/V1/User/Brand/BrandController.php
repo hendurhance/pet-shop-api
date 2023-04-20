@@ -17,7 +17,7 @@ class BrandController extends Controller
     public function __construct(private BrandRepositoryInterface $brandRepository)
     {
         $this->middleware('jwt.auth')->except(['index', 'show']);
-        $this->middleware('role:user')->except(['index', 'show']);
+        // $this->middleware('role:user')->except(['index', 'show']);
         $this->brandRepository = $brandRepository;
     }
 

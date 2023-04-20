@@ -11,6 +11,7 @@ This is a RestfulAPI for a pet shop solution to [development task](https://buckh
 - Eloquent Relationships
 - Custom Middleware
 - PSR-12 Coding Standard
+- Docker Setup
 - PHP Insights of 80% or more
 
 ## Installation

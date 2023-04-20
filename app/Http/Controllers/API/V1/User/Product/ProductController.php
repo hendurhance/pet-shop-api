@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         $this->productRepository = $productRepository;
         $this->middleware('jwt.auth')->except(['index', 'show']);
-        $this->middleware('role:user')->except(['index', 'show']);
+        // $this->middleware('role:user')->except(['index', 'show']);
     }
 
     /**

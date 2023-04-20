@@ -17,7 +17,7 @@ class PaymentController extends Controller
     public function __construct(private PaymentRepositoryInterface $paymentRepository)
     {
         $this->middleware('jwt.auth');
-        $this->middleware('role:user');
+        // $this->middleware('role:user');
         $this->paymentRepository = $paymentRepository;
     }
 

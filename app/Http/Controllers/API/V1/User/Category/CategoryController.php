@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         $this->categoryRepository = $categoryRepository;
         $this->middleware('jwt.auth')->except(['index', 'show']);
-        $this->middleware('role:user')->except(['index', 'show']);
+        // $this->middleware('role:user')->except(['index', 'show']);
     }
 
     /**

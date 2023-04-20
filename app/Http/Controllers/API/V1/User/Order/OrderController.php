@@ -20,7 +20,7 @@ class OrderController extends Controller
     public function __construct(private OrderRepositoryInterface $orderRepository)
     {
         $this->middleware('jwt.auth');
-        $this->middleware('role:user');
+        // $this->middleware('role:user');
         $this->orderRepository = $orderRepository;
     }
 

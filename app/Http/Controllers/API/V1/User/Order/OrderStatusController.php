@@ -18,7 +18,7 @@ class OrderStatusController extends Controller
     public function __construct(private OrderStatusRepositoryInterface $orderStatusRepository)
     {
         $this->middleware('jwt.auth')->except('index', 'show');
-        $this->middleware('role:user')->except('index', 'show');
+        // $this->middleware('role:user')->except('index', 'show');
         $this->orderStatusRepository = $orderStatusRepository;
     }
 
