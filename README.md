@@ -109,6 +109,7 @@ The GitHub repository for the package can be found [here](https://github.com/hen
 - The package can be found in the `packages/currency-exchange-rate` directory.
 
 - The complete documentation of the package can be found in the `packages/currency-exchange-rate/README.md` file or GitHub [here](https://github.com/hendurhance/euro-currency-exchange/blob/main/README.md).
+- Documentation for the package can be found in the `packages/currency-exchange-rate/docs` directory. Open the `index.html` file to view the documentation.
 
 ### Requirements
 - GET endpoint exposed to get the exchange rate from EUR to other currencies.

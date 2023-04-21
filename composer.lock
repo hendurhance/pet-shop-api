@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8437b9cee76bfee17ae2c0c0583fdc31",
+    "content-hash": "3fd5b97c53931fa2acb2d2b4f3ba242f",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1908,8 +1908,8 @@
             "version": "dev-main",
             "dist": {
                 "type": "path",
-                "url": "./packages/martian/euro-currency-exchange",
-                "reference": "6621b55d4a1e60af258dff68c7d3d094156aca01"
+                "url": "./packages/euro-currency-exchange",
+                "reference": "e7dab7c860df2e09708d350e03cfeaf525bfd492"
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.0",

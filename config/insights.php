@@ -66,7 +66,7 @@ return [
 
     'exclude' => [
          'app/Providers',
-         'packages/martian/euro-currency-exchange',
+         'packages/euro-currency-exchange',
     ],
 
     'add' => [],
