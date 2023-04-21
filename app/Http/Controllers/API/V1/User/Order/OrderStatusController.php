@@ -8,6 +8,7 @@ use App\Http\Requests\User\Order\CreateOrderStatusRequest;
 use App\Http\Requests\User\Order\OrderStatusListingRequest;
 use App\Http\Requests\User\Order\UpdateOrderStatusRequest;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderStatusController extends Controller
 {
@@ -43,7 +44,7 @@ class OrderStatusController extends Controller
     public function store(CreateOrderStatusRequest $request)
     {
         $orderStatus = $this->orderStatusRepository->create($request->title);
-        return $this->success($orderStatus, 'Order status created successfully');
+        return $this->success($orderStatus, 'Order status created successfully', Response::HTTP_CREATED);
     }
 
     /**
@@ -80,6 +81,6 @@ class OrderStatusController extends Controller
     public function destroy(string $uuid)
     {
         $this->orderStatusRepository->delete($uuid);
-        return $this->success(null, 'Order status deleted successfully');
+        return $this->success(null, 'Order status deleted successfully', Response::HTTP_NO_CONTENT);
     }
 }

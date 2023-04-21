@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\Payment;
 
 use App\Enums\PaymentTypeEnum;
+use App\Rules\ValidExpireDate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePaymentRequest extends FormRequest
@@ -28,7 +29,10 @@ class UpdatePaymentRequest extends FormRequest
             'details.holder_name' => 'required_if:type,' . PaymentTypeEnum::CARD->value.'|string|max:255',
             'details.number' => 'required_if:type,' . PaymentTypeEnum::CARD->value.'|numeric',
             'details.ccv' => 'required_if:type,' . PaymentTypeEnum::CARD->value.'|numeric',
-            'details.expire_date' => 'required_if:type,' . PaymentTypeEnum::CARD->value.'|date',
+            'details.expire_date' => [
+                'required_if:type,' . PaymentTypeEnum::CARD->value,
+                new ValidExpireDate(),
+            ],
             'details.first_name' => 'required_if:type,' . PaymentTypeEnum::CASH->value.'|string|max:255',
             'details.last_name' => 'required_if:type,' . PaymentTypeEnum::CASH->value.'|string|max:255',
             'details.address' => 'required_if:type,' . PaymentTypeEnum::CASH->value.'|string|max:255',

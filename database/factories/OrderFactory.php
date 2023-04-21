@@ -42,6 +42,20 @@ class OrderFactory extends Factory
     }
 
     /**
+     * Indicate that the model's order status is shipped.
+     */
+    public function shipped(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'order_status_id' => OrderStatus::factory()->create([
+                    'title' => OrderStatusEnum::SHIPPED->value
+                ])->id,
+            ];
+        });
+    }
+
+    /**
      * Get products uuid and random quantity
      * 
      * @param \Illuminate\Support\Collection $products

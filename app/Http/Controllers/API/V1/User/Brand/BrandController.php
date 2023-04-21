@@ -8,6 +8,7 @@ use App\Http\Requests\User\Brand\BrandListingRequest;
 use App\Http\Requests\User\Brand\CreateBrandRequest;
 use App\Http\Requests\User\Brand\UpdateBrandRequest;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class BrandController extends Controller
 {
@@ -42,7 +43,7 @@ class BrandController extends Controller
     public function store(CreateBrandRequest $request)
     {
         $brand = $this->brandRepository->create($request->title);
-        return $this->success($brand, 'Brand created successfully');
+        return $this->success($brand, 'Brand created successfully', Response::HTTP_CREATED);
     }
 
     /**
@@ -75,6 +76,6 @@ class BrandController extends Controller
     public function destroy(string $uuid)
     {
         $this->brandRepository->delete($uuid);
-        return $this->success(null, 'Brand deleted successfully');
+        return $this->success(null, 'Brand deleted successfully', Response::HTTP_NO_CONTENT);
     }
 }

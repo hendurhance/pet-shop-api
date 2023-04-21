@@ -8,6 +8,7 @@ use App\Http\Requests\User\Payment\CreatePaymentRequest;
 use App\Http\Requests\User\Payment\PaymentListingRequest;
 use App\Http\Requests\User\Payment\UpdatePaymentRequest;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PaymentController extends Controller
 {
@@ -42,7 +43,7 @@ class PaymentController extends Controller
     public function store(CreatePaymentRequest $request)
     {
         $payment = $this->paymentRepository->create($request->validated());
-        return $this->success($payment, 'Payment created successfully');
+        return $this->success($payment, 'Payment created successfully', Response::HTTP_CREATED);
     }
 
     /**
@@ -78,6 +79,6 @@ class PaymentController extends Controller
     public function destroy(string $uuid)
     {
         $this->paymentRepository->delete($uuid);
-        return $this->success(null, 'Payment deleted successfully');
+        return $this->success(null, 'Payment deleted successfully', Response::HTTP_NO_CONTENT);
     }
 }

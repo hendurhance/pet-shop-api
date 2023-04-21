@@ -45,7 +45,7 @@ class OrderController extends Controller
     public function store(CreateOrderRequest $request)
     {
         $order = $this->orderRepository->create($request->validated());
-        return $this->success($order, 'Order created successfully');
+        return $this->success($order, 'Order created successfully', Response::HTTP_CREATED);
     }
 
     /**
@@ -82,7 +82,7 @@ class OrderController extends Controller
     public function destroy(string $uuid)
     {
         $this->orderRepository->delete($uuid);
-        return $this->success(null, 'Order deleted successfully');
+        return $this->success(null, 'Order deleted successfully', Response::HTTP_NO_CONTENT);
     }
 
     /**

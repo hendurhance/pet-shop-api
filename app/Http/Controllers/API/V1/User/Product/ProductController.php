@@ -8,6 +8,7 @@ use App\Http\Requests\User\Product\CreateProductRequest;
 use App\Http\Requests\User\Product\ProductListingRequest;
 use App\Http\Requests\User\Product\UpdateProductRequest;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
@@ -42,7 +43,7 @@ class ProductController extends Controller
     public function store(CreateProductRequest $request)
     {
         $product = $this->productRepository->create($request->validated());
-        return $this->success($product, 'Product created successfully');
+        return $this->success($product, 'Product created successfully', Response::HTTP_CREATED);
     }
 
     /**
@@ -79,6 +80,6 @@ class ProductController extends Controller
     public function destroy(string $uuid)
     {
         $this->productRepository->delete($uuid);
-        return $this->success(null, 'Product deleted successfully');
+        return $this->success(null, 'Product deleted successfully', Response::HTTP_NO_CONTENT);
     }
 }

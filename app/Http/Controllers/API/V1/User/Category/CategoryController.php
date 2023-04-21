@@ -8,6 +8,7 @@ use App\Http\Requests\User\Category\CategoryListingRequest;
 use App\Http\Requests\User\Category\CreateCategoryRequest;
 use App\Http\Requests\User\Category\UpdateCategoryRequest;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends Controller
 {
@@ -45,7 +46,7 @@ class CategoryController extends Controller
     {
         $category = $this->categoryRepository->create($request->title);
 
-        return $this->success($category, 'Category created successfully');
+        return $this->success($category, 'Category created successfully', Response::HTTP_CREATED);
     }
 
     /**
@@ -85,6 +86,6 @@ class CategoryController extends Controller
     {
         $this->categoryRepository->delete($uuid);
 
-        return $this->success(null, 'Category deleted successfully');
+        return $this->success(null, 'Category deleted successfully', Response::HTTP_NO_CONTENT);
     }
 }

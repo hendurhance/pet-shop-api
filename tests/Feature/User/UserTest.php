@@ -3,11 +3,15 @@
 namespace Tests\Feature\User;
 
 use App\Actions\Auth\AuthAction;
+use App\Models\Category;
 use App\Models\File;
+use App\Models\Order;
+use App\Models\OrderStatus;
+use App\Models\Payment;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use PDO;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
@@ -94,5 +98,24 @@ class UserTest extends TestCase
             'first_name' => $this->user->first_name,
             'last_name' => $this->user->last_name,
         ]);
+    }
+
+    /**
+     * Test user can get orders owned by them
+     * @return void
+     */
+    public function test_user_can_get_orders_owned_by_them()
+    {
+        $this->artisan('db:seed', ['--class' => 'OrderStatusSeeder']);
+        Category::factory()->count(5)->create();
+        Product::factory()->count(5)->create();
+        Payment::factory()->count(5)->create();
+        Order::factory()->count(5)->create([
+            'user_id' => $this->user->id,
+        ]);
+        $response = $this->withHeader('Authorization', 'Bearer ' . $this->jwtToken)
+            ->json('GET', route('api.v1.user.order.index', $this->user->id));
+
+        $response->assertStatus(Response::HTTP_OK);
     }
 }

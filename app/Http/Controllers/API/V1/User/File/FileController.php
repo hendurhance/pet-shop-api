@@ -28,7 +28,7 @@ class FileController extends Controller
     public function upload(CreateFileRequest $request)
     {
         $data = $this->fileRepository->create($request->file('file'));
-        return $this->success($data, 'File uploaded successfully', Response::HTTP_OK);
+        return $this->success($data, 'File uploaded successfully', Response::HTTP_CREATED);
     }
 
     /**
@@ -38,6 +38,7 @@ class FileController extends Controller
      */
     public function show(string $uuid)
     {
-        return $this->fileRepository->find($uuid);
+        $data = $this->fileRepository->find($uuid);
+        return $this->success($data, 'File fetched successfully', Response::HTTP_OK);
     }
 }
