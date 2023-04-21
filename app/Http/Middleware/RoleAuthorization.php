@@ -23,12 +23,15 @@ class RoleAuthorization
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         $user = Auth::user();
-        if (!$user) throw new UnauthorizedException('Unauthorized');
+        if (!$user) {
+            throw new UnauthorizedException('Unauthorized');
+        }
 
         foreach ($roles as $role) {
             if ($role === 'admin' && $user->is_admin) {
                 return $next($request);
-            } elseif ($role === 'user' && !$user->is_admin) {
+            }
+            if ($role === 'user' && !$user->is_admin) {
                 return $next($request);
             }
         }

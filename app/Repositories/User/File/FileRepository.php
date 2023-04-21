@@ -30,7 +30,7 @@ class FileRepository implements FileRepositoryInterface
         return File::create([
             'name' => $file->getClientOriginalName(),
             'path' => $uploadedFile,
-            'size' => $file->getSize(), # TODO: Convert to KB, MB, GB
+            'size' => $file->getSize(),
             'type' => $file->getMimeType(),
         ]);
     }

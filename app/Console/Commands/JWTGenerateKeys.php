@@ -30,15 +30,23 @@ class JWTGenerateKeys extends Command
         $secret = sodium_crypto_sign_keypair();
 
         $publicKey = base64_encode(sodium_crypto_sign_publickey($secret));
-
         $privateKey = base64_encode(sodium_crypto_sign_secretkey($secret));
 
         if ($this->option('show')) {
-            $this->line('<comment>JWT_PUBLIC_KEY:</comment> ' . $publicKey);
-            $this->line('<comment>JWT_PRIVATE_KEY:</comment> ' . $privateKey);
-            return;
+            $this->showKeys($publicKey, $privateKey);
+        } else {
+            $this->updateEnvFile($publicKey, $privateKey);
         }
+    }
 
+    protected function showKeys($publicKey, $privateKey)
+    {
+        $this->line('<comment>JWT_PUBLIC_KEY:</comment> ' . $publicKey);
+        $this->line('<comment>JWT_PRIVATE_KEY:</comment> ' . $privateKey);
+    }
+
+    protected function updateEnvFile($publicKey, $privateKey)
+    {
         $envPath = base_path('.env');
 
         if (!file_exists($envPath)) {
@@ -46,21 +54,24 @@ class JWTGenerateKeys extends Command
             return;
         }
 
-        // Update the .env file with the new keys, if they don't already exist append them to the end of the file
         $envContents = file_get_contents($envPath);
-        $envContents = preg_replace('/JWT_PUBLIC_KEY=.*/', 'JWT_PUBLIC_KEY=' . $publicKey, $envContents);
-        $envContents = preg_replace('/JWT_PRIVATE_KEY=.*/', 'JWT_PRIVATE_KEY=' . $privateKey, $envContents);
-
-        if (!strpos($envContents, 'JWT_PUBLIC_KEY=')) {
-            $envContents .= PHP_EOL . 'JWT_PUBLIC_KEY=' . $publicKey;
-        }
-
-        if (!strpos($envContents, 'JWT_PRIVATE_KEY=')) {
-            $envContents .= PHP_EOL . 'JWT_PRIVATE_KEY=' . $privateKey;
-        }
+        $envContents = $this->replaceOrAppendKey($envContents, 'JWT_PUBLIC_KEY', $publicKey);
+        $envContents = $this->replaceOrAppendKey($envContents, 'JWT_PRIVATE_KEY', $privateKey);
 
         file_put_contents($envPath, $envContents);
 
         $this->info('JWT public and private key pair generated successfully.');
+    }
+
+    protected function replaceOrAppendKey($envContents, $keyName, $keyValue)
+    {
+        $pattern = "/$keyName=.*/";
+        $replacement = "$keyName=$keyValue";
+
+        if (preg_match($pattern, $envContents)) {
+            return preg_replace($pattern, $replacement, $envContents);
+        } else {
+            return $envContents . PHP_EOL . $replacement;
+        }
     }
 }

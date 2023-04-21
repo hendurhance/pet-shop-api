@@ -77,7 +77,7 @@ class BrandRepository implements BrandRepositoryInterface
             $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
         }
 
-        if(isset($filters['page'])) {
+        if (isset($filters['page'])) {
             $query->wherePage($filters['page']);
         }
 

@@ -117,6 +117,6 @@ The GitHub repository for the package can be found [here](https://github.com/hen
     - `amount` - The amount to convert. This is optional. If not provided, the default value is 1.
     - Since it is assumed that `EUR` is the base currency, the `from` param is not needed.
 - The package should be able to get the exchange rate from the [[Exchange Rates API](https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml)].
-- The package has a total of 9 unit tests.
+- The package has a total of 8 unit tests.
 
 ### Thanks for reading.

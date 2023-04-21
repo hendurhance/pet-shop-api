@@ -22,28 +22,12 @@ class UserRepository implements AdminUserRepositoryInterface
     {
         $query = User::query()->whereUserType(UserTypeEnum::IS_USER);
 
-        if (isset($filters['first_name'])) {
-            $query->whereFirstName($filters['first_name']);
-        }
+        $filterableColumns = ['first_name' => 'whereFirstName', 'email' => 'whereEmail', 'phone' => 'wherePhoneNumber', 'address' => 'whereAddress', 'created_at' => 'whereCreatedAt', 'marketing' => 'whereMarketing'];
 
-        if (isset($filters['email'])) {
-            $query->whereEmail($filters['email']);
-        }
-
-        if (isset($filters['phone'])) {
-            $query->wherePhoneNumber($filters['phone']);
-        }
-
-        if (isset($filters['address'])) {
-            $query->whereAddress($filters['address']);
-        }
-
-        if (isset($filters['created_at'])) {
-            $query->whereCreatedAt($filters['created_at']);
-        }
-
-        if (isset($filters['marketing'])) {
-            $query->whereMarketing($filters['marketing']);
+        foreach ($filterableColumns as $column => $method) {
+            if (isset($filters[$column])) {
+                $query->$method($filters[$column]);
+            }
         }
 
         if (isset($filters['sortBy'])) {
@@ -94,7 +78,9 @@ class UserRepository implements AdminUserRepositoryInterface
             throw new UserNotFoundException();
         });
 
-        if ($user->is_admin) throw new UserNotFoundException('You cannot perform this action on an admin user');
+        if ($user->is_admin) {
+            throw new UserNotFoundException('You cannot perform this action on an admin user');
+        }
 
         return $user;
     }

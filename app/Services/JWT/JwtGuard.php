@@ -77,22 +77,29 @@ class JwtGuard implements Guard
             return null;
         }
 
+        $decoded = $this->authenticateToken($token);
+
+        if (!$decoded) {
+            $user = null;
+        } else {
+            $user = $this->provider->retrieveById($decoded->getRelatedTo());
+        }
+
+        return $user;
+    }
+
+    protected function authenticateToken($token)
+    {
         try {
             $decoded = $this->authenticatedAccessToken($token);
             if (!$this->tokenIsInvalidated($decoded->getIdentifiedBy())) {
                 return null;
             }
-            if (!$decoded) {
-                $user = null;
-            } else {
-                $user = $this->provider->retrieveById($decoded->getRelatedTo());
-            }
+            return $decoded;
         } catch (\Exception $exception) {
             logger($exception);
-            $user = null;
+            return null;
         }
-
-        return $user;
     }
 
     protected function getBearerToken()

@@ -15,5 +15,4 @@ class SwaggerController extends Controller
     {
         return view('swagger.index');
     }
-    
 }

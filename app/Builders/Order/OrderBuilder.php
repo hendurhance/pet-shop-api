@@ -44,8 +44,12 @@ class OrderBuilder extends BaseBuilder
      */
     public function whereDateRange(array $range): self
     {
-        if (isset($range['from'])) $this->whereDate('created_at', '>=', $range['from']);
-        if (isset($range['to'])) $this->whereDate('created_at', '<=', $range['to']);
+        if (isset($range['from'])) {
+            $this->whereDate('created_at', '>=', $range['from']);
+        }
+        if (isset($range['to'])) {
+            $this->whereDate('created_at', '<=', $range['to']);
+        }
         return $this;
     }
 

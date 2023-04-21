@@ -26,7 +26,6 @@ Route::group([
     'as' => 'user.',
     'prefix' => 'user',
 ], function () {
-
     Route::group([
         'namespace' => 'User'
     ], function () {
@@ -41,7 +40,7 @@ Route::group([
         'namespace' => 'Auth'
     ], function () {
         Route::post('/login', 'LoginController@login')->name('login');
-        Route::post('/create', 'RegisterController@create')->name('create');
+        Route::post('/create', 'RegisterController@store')->name('create');
         Route::get('/logout', 'LogoutController@logout')->name('logout');
         Route::post('/forgot-password', 'ForgotPasswordController@forgotPassword')->name('forgot-password');
         Route::post('/reset-password-token', 'ResetPasswordController@resetPasswordToken')->name('reset-password-token');
@@ -59,7 +58,7 @@ Route::group([
     'prefix' => 'main',
 ], function () {
     Route::get('/promotions', 'PromotionController@index')->name('promotion.index');
-    Route::resource('/blog', 'BlogController')->only(['index', 'show']);
+    Route::apiResource('/blog', 'BlogController')->only(['index', 'show']);
 });
 
 /*
@@ -71,8 +70,8 @@ Route::group([
 Route::group([
     'namespace' => 'Category',
 ], function () {
-    Route::post('/category', 'CategoryController@create')->name('category.create');
-    Route::resource('/category', 'CategoryController')->except(['create', 'index']);
+    Route::post('/category/create', 'CategoryController@store')->name('category.create');
+    Route::apiResource('/category', 'CategoryController')->except(['store', 'index']);
     Route::get('/categories', 'CategoryController@index')->name('category.index');
 });
 
@@ -85,8 +84,8 @@ Route::group([
 Route::group([
     'namespace' => 'Brand',
 ], function () {
-    Route::post('/brand', 'BrandController@create')->name('brand.create');
-    Route::resource('/brand', 'BrandController')->except(['create', 'index']);
+    Route::post('/brand/create', 'BrandController@store')->name('brand.create');
+    Route::apiResource('/brand', 'BrandController')->except(['store', 'index']);
     Route::get('/brands', 'BrandController@index')->name('brand.index');
 });
 
@@ -104,7 +103,7 @@ Route::group([
     Route::get('/orders/dashboard', 'OrderController@dashboard')->name('orders.dashboard');
     Route::post('/order/create', 'OrderController@store')->name('orders.store');
 
-    Route::resource('order', 'OrderController')->except(['create', 'index']);
+    Route::apiResource('order', 'OrderController')->except(['store', 'index']);
     Route::get('/order/{uuid}/download', 'OrderController@download')->name('order.download');
 });
 
@@ -118,7 +117,7 @@ Route::group([
     'namespace' => 'Order',
 ], function () {
     Route::post('/order-status/create', 'OrderStatusController@store')->name('order.status.store');
-    Route::resource('/order-status', 'OrderStatusController')->except(['create', 'index']);
+    Route::apiResource('/order-status', 'OrderStatusController')->except(['store', 'index']);
     Route::get('/order-statuses', 'OrderStatusController@index')->name('order.status.index');
 });
 
@@ -132,7 +131,7 @@ Route::group([
     'namespace' => 'Payment',
 ], function () {
     Route::post('/payment/create', 'PaymentController@store')->name('payment.store');
-    Route::resource('/payment', 'PaymentController')->except(['create', 'index']);
+    Route::apiResource('/payment', 'PaymentController')->except(['store', 'index']);
     Route::get('/payments', 'PaymentController@index')->name('payment.index');
 });
 
@@ -145,8 +144,8 @@ Route::group([
 Route::group([
     'namespace' => 'Product',
 ], function () {
-    Route::post('/product', 'ProductController@create')->name('product.create');
-    Route::resource('/product', 'ProductController')->except(['create', 'index']);
+    Route::post('/product/create', 'ProductController@store')->name('product.create');
+    Route::apiResource('/product', 'ProductController')->except(['store', 'index']);
     Route::get('/products', 'ProductController@index')->name('product.index');
 });
 

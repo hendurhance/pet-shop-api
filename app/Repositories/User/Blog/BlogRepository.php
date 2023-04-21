@@ -22,7 +22,9 @@ class BlogRepository implements BlogRepositoryInterface
             $query->sortBy($filters['sortBy'], $filters['desc'] ?? false);
         }
 
-        if (isset($filters['page'])) $query->wherePage($filters['page']);
+        if (isset($filters['page'])) {
+            $query->wherePage($filters['page']);
+        }
 
         return $query->paginate($filters['limit'] ?? $paginate);
     }

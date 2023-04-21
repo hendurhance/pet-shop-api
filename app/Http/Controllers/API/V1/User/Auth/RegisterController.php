@@ -23,7 +23,7 @@ class RegisterController extends Controller
      * @param CreateUserRequest $request
      * @return \App\Traits\HttpResponse
      */
-    public function create(CreateUserRequest $request)
+    public function store(CreateUserRequest $request)
     {
         $data = $this->authenticateRepository->create($request->validated());
         return $this->success($data, 'User created successfully', Response::HTTP_CREATED);
