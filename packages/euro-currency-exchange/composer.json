@@ -1,0 +1,72 @@
+{
+    "name": "martian/euro-currency-exchange",
+    "description": "A Laravel package for converting euro to other currency ",
+    "keywords": [
+        "martian",
+        "euro-currency-exchange"
+    ],
+    "homepage": "https://github.com/hendurhance/euro-currency-exchange",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Josiah Endurance",
+            "email": "hendurhance.dev@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^10.0",
+        "guzzlehttp/guzzle": "^7.0"
+        
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./packages/martian/euro-currency-exchange",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Martian\\EuroCurrencyExchange\\Tests\\": "tests",
+            "Martian\\EuroCurrencyExchange\\": "src"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false,
+    "autoload-dev": {
+        "psr-4": {
+            "Martian\\EuroCurrencyExchange\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Martian\\EuroCurrencyExchange\\Providers\\EuroCurrencyExchangeServiceProvider"
+            ],
+            "aliases": {
+                "EuroCurrencyExchange": "Martian\\EuroCurrencyExchange\\Facade\\EuroCurrencyExchangeFacade"
+            }
+        }
+    }
+}
