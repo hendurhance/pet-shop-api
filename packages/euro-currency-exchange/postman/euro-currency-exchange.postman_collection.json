@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "4b368114-8eac-4738-99bb-8e0d1657104b",
+		"name": "Euro Currency Exchange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12014982",
+		"_collection_link": "https://biocatlog.postman.co/workspace/My-Workspace~4b428b2f-348e-4b27-8182-be03a0fabfe9/collection/12014982-4b368114-8eac-4738-99bb-8e0d1657104b?action=share&creator=12014982&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Exchange",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/exchange?amount=100&to=CAD",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"exchange"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "100"
+						},
+						{
+							"key": "to",
+							"value": "CAD"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

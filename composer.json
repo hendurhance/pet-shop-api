@@ -69,7 +69,7 @@
     "repositories": {
         "local": {
             "type": "path",
-            "url": "./packages/martian/euro-currency-exchange",
+            "url": "./packages/euro-currency-exchange",
             "options": {
                 "symlink": true
             }
